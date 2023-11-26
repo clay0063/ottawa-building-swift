@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         let listEN = jsonFetch.buildingDataEN
-//        let listFR = jsonFetch.buildingDataFR
+        //        let listFR = jsonFetch.buildingDataFR
         
         VStack {
             NavigationStack {
@@ -39,8 +39,16 @@ struct ContentView: View {
 
 struct BuildingCards: View {
     let data: Building
+    
     var body: some View {
-        Text(data.name)
+        let imageURL = data.image.replacingOccurrences(of: ".jpg", with: "")
+        VStack {
+            Image(imageURL)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 300)
+            Text(data.name)
+        }
     }
 }
 
