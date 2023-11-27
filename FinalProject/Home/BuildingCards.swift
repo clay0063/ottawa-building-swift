@@ -36,6 +36,7 @@ struct BuildingCards: View {
                             .padding(.vertical, 2.0)
                         HStack {
                             Text(data.address)
+                                .multilineTextAlignment(.leading)
                             Spacer()
                             Text("km from you")
                         }

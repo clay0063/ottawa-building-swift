@@ -9,13 +9,14 @@ import SwiftUI
 
 struct BuildingListView: View {
     var listData: [Building]
+    @State private var searchName = ""
     
     var body: some View {
         VStack {
             NavigationStack {
                 ScrollView {
                     LazyVStack {
-                        ForEach(listData) { building in
+                        ForEach(searchBuildings(data: listData, searchName: searchName)) { building in
                             NavigationLink(
                                 destination: BuildingDetailView(data: building)
                             ) {
@@ -25,6 +26,7 @@ struct BuildingListView: View {
                     }
                 }
             }
+            .searchable(text: $searchName, prompt: "Search...")
         }
         .padding()
     }
