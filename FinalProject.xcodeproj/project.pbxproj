@@ -14,6 +14,12 @@
 		8A0692062B11010100448041 /* FinalProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0692052B11010100448041 /* FinalProjectTests.swift */; };
 		8A0692102B11010100448041 /* FinalProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06920F2B11010100448041 /* FinalProjectUITests.swift */; };
 		8A0692122B11010100448041 /* FinalProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0692112B11010100448041 /* FinalProjectUITestsLaunchTests.swift */; };
+		8A9939BB2B15082D00DA3022 /* BuildingCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939BA2B15082D00DA3022 /* BuildingCards.swift */; };
+		8A9939BD2B15085300DA3022 /* BuildingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939BC2B15085300DA3022 /* BuildingDetailView.swift */; };
+		8A9939BF2B15129A00DA3022 /* BuildingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939BE2B15129A00DA3022 /* BuildingListView.swift */; };
+		8A9939C12B1512FD00DA3022 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939C02B1512FD00DA3022 /* MapView.swift */; };
+		8A9939C32B15130800DA3022 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939C22B15130800DA3022 /* SavedView.swift */; };
+		8A9939C52B15131200DA3022 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939C42B15131200DA3022 /* MoreView.swift */; };
 		8AC04E812B112CB400084EE6 /* buildings.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AC04E802B112CB400084EE6 /* buildings.json */; };
 		8AC04E842B112D5F00084EE6 /* JSONFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC04E832B112D5F00084EE6 /* JSONFetch.swift */; };
 		8AC04E862B11329000084EE6 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC04E852B11329000084EE6 /* Structs.swift */; };
@@ -47,6 +53,12 @@
 		8A06920B2B11010100448041 /* FinalProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinalProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A06920F2B11010100448041 /* FinalProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalProjectUITests.swift; sourceTree = "<group>"; };
 		8A0692112B11010100448041 /* FinalProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8A9939BA2B15082D00DA3022 /* BuildingCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingCards.swift; sourceTree = "<group>"; };
+		8A9939BC2B15085300DA3022 /* BuildingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailView.swift; sourceTree = "<group>"; };
+		8A9939BE2B15129A00DA3022 /* BuildingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingListView.swift; sourceTree = "<group>"; };
+		8A9939C02B1512FD00DA3022 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		8A9939C22B15130800DA3022 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
+		8A9939C42B15131200DA3022 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		8AC04E802B112CB400084EE6 /* buildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buildings.json; sourceTree = "<group>"; };
 		8AC04E832B112D5F00084EE6 /* JSONFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFetch.swift; sourceTree = "<group>"; };
 		8AC04E852B11329000084EE6 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
@@ -100,6 +112,11 @@
 		8A0691F32B11010000448041 /* FinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				8A9939B52B1507B700DA3022 /* Home */,
+				8A9939B62B1507C400DA3022 /* Map */,
+				8A9939B72B1507D800DA3022 /* Saved */,
+				8A9939B82B1507E600DA3022 /* More */,
+				8A9939B92B15080500DA3022 /* Details */,
 				8AC04E822B112D4C00084EE6 /* Utils */,
 				8A0691F42B11010000448041 /* FinalProjectApp.swift */,
 				8A0691F62B11010000448041 /* ContentView.swift */,
@@ -132,6 +149,47 @@
 				8A0692112B11010100448041 /* FinalProjectUITestsLaunchTests.swift */,
 			);
 			path = FinalProjectUITests;
+			sourceTree = "<group>";
+		};
+		8A9939B52B1507B700DA3022 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8A9939BA2B15082D00DA3022 /* BuildingCards.swift */,
+				8A9939BE2B15129A00DA3022 /* BuildingListView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8A9939B62B1507C400DA3022 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				8A9939C02B1512FD00DA3022 /* MapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		8A9939B72B1507D800DA3022 /* Saved */ = {
+			isa = PBXGroup;
+			children = (
+				8A9939C22B15130800DA3022 /* SavedView.swift */,
+			);
+			path = Saved;
+			sourceTree = "<group>";
+		};
+		8A9939B82B1507E600DA3022 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				8A9939C42B15131200DA3022 /* MoreView.swift */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		8A9939B92B15080500DA3022 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				8A9939BC2B15085300DA3022 /* BuildingDetailView.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		8AC04E822B112D4C00084EE6 /* Utils */ = {
@@ -275,10 +333,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A9939BB2B15082D00DA3022 /* BuildingCards.swift in Sources */,
+				8A9939C12B1512FD00DA3022 /* MapView.swift in Sources */,
+				8A9939BF2B15129A00DA3022 /* BuildingListView.swift in Sources */,
 				8AC04E862B11329000084EE6 /* Structs.swift in Sources */,
 				8AC04E842B112D5F00084EE6 /* JSONFetch.swift in Sources */,
+				8A9939C32B15130800DA3022 /* SavedView.swift in Sources */,
+				8A9939BD2B15085300DA3022 /* BuildingDetailView.swift in Sources */,
 				8A0691F72B11010000448041 /* ContentView.swift in Sources */,
 				8A0691F52B11010000448041 /* FinalProjectApp.swift in Sources */,
+				8A9939C52B15131200DA3022 /* MoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
