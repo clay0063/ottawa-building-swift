@@ -12,9 +12,39 @@ class BuildingFiltering {
         var filteredList = buildings
         
         //FILTER FEATURE
+        if selectedFeature != "Clear Features" && selectedFeature != "Placeholder" {
+            filteredList = filteredList.filter { building in
+                    switch selectedFeature {
+                    case "isShuttle":
+                        return building.isShuttle
+                    case "isPublicWashrooms":
+                        return building.isPublicWashrooms
+                    case "isAccessible":
+                        return building.isFreeParking
+                    case "isFreeParking":
+                        return building.isFreeParking
+                    case "isBikeParking":
+                        return building.isBikeParking
+                    case "isPaidParking":
+                        return building.isPaidParking
+                    case "isGuidedTour":
+                        return building.isGuidedTour
+                    case "isFamilyFriendly":
+                        return building.isFamilyFriendly
+                    case "isOCTranspoNearby":
+                        return building.isOCTranspoNearby
+                    case "isOpenSaturday":
+                        return building.isOpenSaturday
+                    case "isOpenSunday":
+                        return building.isOpenSunday
+                    default:
+                        return false
+                    }
+                }
+        }
         
         //FILTER CATEGORY
-        if selectedCategory != "Placeholder" {
+        if selectedCategory != "All Categories" && selectedCategory != "Placeholder" {
             filteredList = filteredList.filter { building in
                 building.category == selectedCategory }
         }

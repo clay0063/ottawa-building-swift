@@ -57,10 +57,14 @@ struct FilterPicker: View {
     @Binding var selectedCategory: String
     @Binding var selectedSortBy: String
     
-    let sortFeatures = ["Test 1", "Test 2"]
+    let sortFeatures = [ "Clear Features",
+        "isShuttle", "isPublicWashrooms", "isAccessible", "isFreeParking",
+        "isBikeParking", "isPaidParking", "isGuidedTour", "isFamilyFriendly",
+        "isOCTranspoNearby", "isOpenSaturday", "isOpenSunday"
+    ]
     var sortCategories: [String] {
         let categories = Set(listData.map {$0.category})
-        return Array(categories)
+        return ["All Categories"] + Array(categories).sorted()
     }
     let sortOptions = ["A-Z", "Z-A", "Distance"]
     
