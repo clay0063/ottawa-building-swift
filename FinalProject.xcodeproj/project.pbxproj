@@ -14,6 +14,7 @@
 		8A0692062B11010100448041 /* FinalProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0692052B11010100448041 /* FinalProjectTests.swift */; };
 		8A0692102B11010100448041 /* FinalProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06920F2B11010100448041 /* FinalProjectUITests.swift */; };
 		8A0692122B11010100448041 /* FinalProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0692112B11010100448041 /* FinalProjectUITestsLaunchTests.swift */; };
+		8A5438C52B1BA29A0056C17C /* BuildingFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */; };
 		8A9939BB2B15082D00DA3022 /* BuildingCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939BA2B15082D00DA3022 /* BuildingCards.swift */; };
 		8A9939BD2B15085300DA3022 /* BuildingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939BC2B15085300DA3022 /* BuildingDetailView.swift */; };
 		8A9939BF2B15129A00DA3022 /* BuildingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939BE2B15129A00DA3022 /* BuildingListView.swift */; };
@@ -54,6 +55,7 @@
 		8A06920B2B11010100448041 /* FinalProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinalProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A06920F2B11010100448041 /* FinalProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalProjectUITests.swift; sourceTree = "<group>"; };
 		8A0692112B11010100448041 /* FinalProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingFiltering.swift; sourceTree = "<group>"; };
 		8A9939BA2B15082D00DA3022 /* BuildingCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingCards.swift; sourceTree = "<group>"; };
 		8A9939BC2B15085300DA3022 /* BuildingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailView.swift; sourceTree = "<group>"; };
 		8A9939BE2B15129A00DA3022 /* BuildingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingListView.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				8AC04E832B112D5F00084EE6 /* JSONFetch.swift */,
 				8AC04E852B11329000084EE6 /* Structs.swift */,
 				8A9939C62B1517C200DA3022 /* Functions.swift */,
+				8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				8AC04E842B112D5F00084EE6 /* JSONFetch.swift in Sources */,
 				8A9939C32B15130800DA3022 /* SavedView.swift in Sources */,
 				8A9939BD2B15085300DA3022 /* BuildingDetailView.swift in Sources */,
+				8A5438C52B1BA29A0056C17C /* BuildingFiltering.swift in Sources */,
 				8A0691F72B11010000448041 /* ContentView.swift in Sources */,
 				8A0691F52B11010000448041 /* FinalProjectApp.swift in Sources */,
 				8A9939C52B15131200DA3022 /* MoreView.swift in Sources */,
