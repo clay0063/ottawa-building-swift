@@ -76,7 +76,8 @@ struct BuildingDetailView: View {
                     Text("Address: \(data.address)")
                 }
                 
-            }.padding()
+            }.frame(maxHeight: .infinity)
+            .padding()
         }
     }
 }

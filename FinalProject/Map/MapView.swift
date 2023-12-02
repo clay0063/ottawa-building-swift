@@ -12,6 +12,7 @@ struct MapView: View {
     var listData: [Building]
     @State private var position: MapCameraPosition = .automatic
     @State private var selectedItem: Int?
+    @State private var isSheetPresented = false
     
     private var selectedPlace: Building? {
         if let selectedItem {
@@ -33,6 +34,35 @@ struct MapView: View {
             //systemImage
             
         }
+        .onChange(of: selectedItem) {
+            isSheetPresented.toggle()
+            print(isSheetPresented)
+        }
+        .safeAreaInset(edge: .bottom) {
+            if let selectedPlace {
+                NavigationView{
+                    //ADD close button
+                    VStack {
+                        Text(selectedPlace.name)
+                        Text(selectedPlace.address)
+                    }
+                    
+                }
+                .frame(height: 128.0)
+                .frame(maxWidth: .infinity)
+                .clipShape(RoundedRectangle(cornerRadius: 50))
+                .padding([.top, .horizontal])
+                .background(.white)
+            }
+        }
+        .sheet(isPresented: $isSheetPresented, content: {
+            if let selectedPlace {
+                BuildingDetailView(data: selectedPlace)
+                    .presentationDetents([.medium, .large])
+                    .presentationCornerRadius(25)
+            }
+            
+        })
         .mapControls(){
             MapCompass()
             MapPitchToggle()
