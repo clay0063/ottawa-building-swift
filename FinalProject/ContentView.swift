@@ -21,7 +21,7 @@ struct ContentView: View {
                     Text("Home")
                 }
                 .tag(0)
-            MapView()
+            MapView(listData: listEN)
                 .tabItem {
                     Image(systemName: "map")
                     Text("Map")
