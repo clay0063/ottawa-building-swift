@@ -13,6 +13,11 @@ struct BuildingListView: View {
     @State private var selectedFeatures = "Placeholder"
     @State private var selectedCategory = "Placeholder"
     @State private var selectedSortBy = "Placeholder"
+    @State var filtering = BuildingFiltering()
+    
+    var filteredData: [Building] {
+        return filtering.filterData(buildings: listData, selectedFeature: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy)
+    }
     
     var body: some View {
         VStack {
@@ -21,7 +26,9 @@ struct BuildingListView: View {
                 FilterPicker(selectedFeatures: $selectedFeatures, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy)
                 ScrollView {
                     LazyVStack {
-                        ForEach(searchBuildings(data: listData, searchName: searchName)) { building in
+                        ForEach(filteredData.filter { building in
+                            return searchName.isEmpty || building.name.lowercased().contains(searchName.lowercased())
+                        }) { building in
                             NavigationLink(
                                 destination: BuildingDetailView(data: building)
                             ) {
@@ -36,6 +43,8 @@ struct BuildingListView: View {
         .padding()
     }
 }
+
+
 
 #Preview {
     ContentView()
