@@ -9,17 +9,16 @@ import Foundation
 
 class BuildingFiltering {
     func filterData(buildings: [Building], selectedFeature: String, selectedCategory: String, selectedSortBy: String) -> [Building] {
-        let filteredList = buildings
+        var filteredList = buildings
         
         //FILTER FEATURE
         
         //FILTER CATEGORY
+        if selectedCategory != "Placeholder" {
+            filteredList = filteredList.filter { building in
+                building.category == selectedCategory }
+        }
         
-        //EG FOR ABOVE, using Region
-//        if selectedRegion != "Worldwide" && selectedRegion != "Placeholder" {
-//            countryList = countryList.filter { country in
-//                country.region == selectedRegion }
-//        }
         
         //SORT BY
         switch selectedSortBy {

@@ -23,7 +23,7 @@ struct BuildingListView: View {
         VStack {
             NavigationStack {
                 //filter stuff goes here
-                FilterPicker(selectedFeatures: $selectedFeatures, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy)
+                FilterPicker(listData: listData, selectedFeatures: $selectedFeatures, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy)
                 ScrollView {
                     LazyVStack {
                         ForEach(filteredData.filter { building in
@@ -52,15 +52,20 @@ struct BuildingListView: View {
 
 
 struct FilterPicker: View {
+    var listData: [Building]
     @Binding var selectedFeatures: String
     @Binding var selectedCategory: String
     @Binding var selectedSortBy: String
+    
+    let sortFeatures = ["Test 1", "Test 2"]
+    var sortCategories: [String] {
+        let categories = Set(listData.map {$0.category})
+        return Array(categories)
+    }
+    let sortOptions = ["A-Z", "Z-A", "Distance"]
+    
     var body: some View {
         VStack {
-            let sortFeatures = ["Test 1", "Test 2"]
-            let sortCategories = ["Test", "Test 2"]
-            let sortOptions = ["A-Z", "Z-A", "Distance"]
-            
             Picker("Features", selection: $selectedFeatures) {
                 if selectedFeatures == "Placeholder" {
                     Text("Pick Feature").tag("Placeholder")
