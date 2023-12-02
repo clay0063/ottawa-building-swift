@@ -10,16 +10,30 @@ import MapKit
 
 struct MapView: View {
     var listData: [Building]
+    @State private var position: MapCameraPosition = .automatic
+    @State private var selectedItem: Int?
+    
+    private var selectedPlace: Building? {
+        if let selectedItem {
+            return listData.first(where: { $0.id.hashValue == selectedItem.hashValue })
+        }
+        return nil
+    }
     
     var body: some View {
-        Map() {
-            ForEach(listData) { building in
-                Marker(building.name, coordinate: CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude))
+        Map(position: $position, selection: $selectedItem) {
+            ForEach(listData, id: \.buildingId) { building in
+                Marker(
+                    building.name,
+                    coordinate: CLLocationCoordinate2D(
+                        latitude: building.latitude,
+                        longitude: building.longitude)
+                ).tag(building.id)
             }
-            
             //systemImage
             
-        }.mapControls(){
+        }
+        .mapControls(){
             MapCompass()
             MapPitchToggle()
             MapUserLocationButton()
@@ -30,3 +44,10 @@ struct MapView: View {
 #Preview {
     ContentView()
 }
+
+struct Place: Identifiable {
+    let id: String
+    let name: String
+    let coordinate: CLLocationCoordinate2D
+}
+
