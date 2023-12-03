@@ -14,6 +14,7 @@ struct MapView: View {
     @State private var selectedItem: Int?
     @State private var isSheetPresented = false
     
+    
     private var selectedPlace: Building? {
         if let selectedItem {
             return listData.first(where: { $0.id.hashValue == selectedItem.hashValue })
@@ -34,31 +35,30 @@ struct MapView: View {
             //systemImage
             
         }
-        .onChange(of: selectedItem) {
-            isSheetPresented.toggle()
-            print(isSheetPresented)
-        }
+//        .onChange(of: selectedItem) {
+//            isSheetPresented.toggle()
+//        }
         .safeAreaInset(edge: .bottom) {
             if let selectedPlace {
-                NavigationView{
-                    //ADD close button
-                    VStack {
-                        Text(selectedPlace.name)
-                        Text(selectedPlace.address)
+                //ADD close button
+                VStack {
+                    Text(selectedPlace.name)
+                    Text(selectedPlace.address)
+                    Button("View more") {
+                        isSheetPresented = true
                     }
-                    
                 }
                 .frame(height: 128.0)
                 .frame(maxWidth: .infinity)
-                .clipShape(RoundedRectangle(cornerRadius: 50))
                 .padding([.top, .horizontal])
-                .background(.white)
+                .background(.thinMaterial)
             }
         }
-        .sheet(isPresented: $isSheetPresented, content: {
+        .sheet(isPresented: $isSheetPresented, onDismiss: {isSheetPresented = false}, content: {
             if let selectedPlace {
                 BuildingDetailView(data: selectedPlace)
-                    .presentationDetents([.medium, .large])
+                //                    .presentationBackground(.thinMaterial)
+                    .presentationDetents([.large])
                     .presentationCornerRadius(25)
             }
             
@@ -80,4 +80,5 @@ struct Place: Identifiable {
     let name: String
     let coordinate: CLLocationCoordinate2D
 }
+
 
