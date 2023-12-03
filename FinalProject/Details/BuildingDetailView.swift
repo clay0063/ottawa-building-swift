@@ -40,6 +40,10 @@ struct BuildingDetailView: View {
                 }.padding(.bottom)
                 
                 VStack {
+                    SavedButton(data: data, savedList: $savedList)
+                }
+                
+                VStack {
                     Text("Categories:")
                     Text("\(data.category)")
                     Divider()
