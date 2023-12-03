@@ -9,6 +9,9 @@ import SwiftUI
 
 struct BuildingDetailView: View {
     let data: Building
+    @Binding var savedList: [Building]
+    let dataList: [Building]
+    
     var body: some View {
         let imageURL = data.image.replacingOccurrences(of: ".jpg", with: "")
         ScrollView {

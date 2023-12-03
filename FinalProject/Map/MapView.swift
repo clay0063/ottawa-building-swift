@@ -10,6 +10,7 @@ import MapKit
 
 struct MapView: View {
     var listData: [Building]
+    @Binding var savedList: [Building]
     @State private var position: MapCameraPosition = .automatic
     @State private var selectedItem: Int?
     @State private var isSheetPresented = false
@@ -56,7 +57,7 @@ struct MapView: View {
         }
         .sheet(isPresented: $isSheetPresented, onDismiss: {isSheetPresented = false}, content: {
             if let selectedPlace {
-                BuildingDetailView(data: selectedPlace)
+                BuildingDetailView(data: selectedPlace, savedList: $savedList, dataList: listData)
                 //                    .presentationBackground(.thinMaterial)
                     .presentationDetents([.large])
                     .presentationCornerRadius(25)

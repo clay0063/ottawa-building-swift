@@ -9,25 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var jsonFetch = JSONFetch()
+    @State private var savedList = [Building]()
     @State private var selectedTab = 0
     
     var body: some View {
         let listEN = jsonFetch.buildingDataEN
         //        let listFR = jsonFetch.buildingDataFR
         TabView(selection: $selectedTab) {
-            BuildingListView(listData: listEN)
+            BuildingListView(listData: listEN, savedList: $savedList)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
                 .tag(0)
-            MapView(listData: listEN)
+            MapView(listData: listEN, savedList: $savedList)
                 .tabItem {
                     Image(systemName: "map")
                     Text("Map")
                 }
                 .tag(1)
-            SavedView()
+            SavedView(dataList: listEN, savedList: $savedList)
                 .tabItem {
                     Image(systemName: "suit.heart")
                     Text("Saved")
