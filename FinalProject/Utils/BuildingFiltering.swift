@@ -6,42 +6,62 @@
 //
 
 import Foundation
+import SwiftUI
 
 class BuildingFiltering {
-    func filterData(buildings: [Building], selectedFeature: String, selectedCategory: String, selectedSortBy: String) -> [Building] {
+    let listOfFeatures: [(name: String, keyPath: KeyPath<Building, Bool>)] = [
+        ("Shuttle", \.isShuttle),
+        ("Public Washrooms", \.isPublicWashrooms),
+        ("Accessible", \.isAccessible),
+        ("Free Parking", \.isFreeParking),
+        ("Bike Parking", \.isBikeParking),
+        ("Paid Parking", \.isPaidParking),
+        ("Guided Tour", \.isGuidedTour),
+        ("Family Friendly", \.isFamilyFriendly),
+        ("OC Transpo", \.isOCTranspoNearby),
+        ("Open Saturday", \.isOpenSaturday),
+        ("Open Sunday", \.isOpenSunday),
+    ]
+    
+    func filterData(buildings: [Building], selectedFeatures: Set<String>, selectedCategory: String, selectedSortBy: String) -> [Building] {
         var filteredList = buildings
-        
         //FILTER FEATURE
-        if selectedFeature != "Clear Features" && selectedFeature != "Placeholder" {
-            filteredList = filteredList.filter { building in
-                    switch selectedFeature {
-                    case "isShuttle":
-                        return building.isShuttle
-                    case "isPublicWashrooms":
-                        return building.isPublicWashrooms
-                    case "isAccessible":
-                        return building.isFreeParking
-                    case "isFreeParking":
-                        return building.isFreeParking
-                    case "isBikeParking":
-                        return building.isBikeParking
-                    case "isPaidParking":
-                        return building.isPaidParking
-                    case "isGuidedTour":
-                        return building.isGuidedTour
-                    case "isFamilyFriendly":
-                        return building.isFamilyFriendly
-                    case "isOCTranspoNearby":
-                        return building.isOCTranspoNearby
-                    case "isOpenSaturday":
-                        return building.isOpenSaturday
-                    case "isOpenSunday":
-                        return building.isOpenSunday
-                    default:
-                        return false
-                    }
-                }
+        filteredList = filteredList.filter { item in
+            selectedFeatures.isEmpty || listOfFeatures.allSatisfy { feature in
+                let featureValue = item[keyPath: feature.keyPath]
+                return (!selectedFeatures.contains(feature.name) || featureValue)
+            }
         }
+//        if selectedFeature != "Clear Features" && selectedFeature != "Placeholder" {
+//            filteredList = filteredList.filter { building in
+//                    switch selectedFeature {
+//                    case "isShuttle":
+//                        return building.isShuttle
+//                    case "isPublicWashrooms":
+//                        return building.isPublicWashrooms
+//                    case "isAccessible":
+//                        return building.isAccessible
+//                    case "isFreeParking":
+//                        return building.isFreeParking
+//                    case "isBikeParking":
+//                        return building.isBikeParking
+//                    case "isPaidParking":
+//                        return building.isPaidParking
+//                    case "isGuidedTour":
+//                        return building.isGuidedTour
+//                    case "isFamilyFriendly":
+//                        return building.isFamilyFriendly
+//                    case "isOCTranspoNearby":
+//                        return building.isOCTranspoNearby
+//                    case "isOpenSaturday":
+//                        return building.isOpenSaturday
+//                    case "isOpenSunday":
+//                        return building.isOpenSunday
+//                    default:
+//                        return false
+//                    }
+//                }
+//        }
         
         //FILTER CATEGORY
         if selectedCategory != "All Categories" && selectedCategory != "Placeholder" {
@@ -64,3 +84,12 @@ class BuildingFiltering {
         
     }
 }
+
+
+struct FilterData: Identifiable {
+    var id = UUID()
+    var imageName: String
+    var title: String
+    var isSelected: Bool = false
+}
+

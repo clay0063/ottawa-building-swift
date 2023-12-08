@@ -26,6 +26,7 @@
 		8AC04E812B112CB400084EE6 /* buildings.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AC04E802B112CB400084EE6 /* buildings.json */; };
 		8AC04E842B112D5F00084EE6 /* JSONFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC04E832B112D5F00084EE6 /* JSONFetch.swift */; };
 		8AC04E862B11329000084EE6 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC04E852B11329000084EE6 /* Structs.swift */; };
+		8ACF26EF2B222FE1009E1994 /* TestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACF26EE2B222FE1009E1994 /* TestPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		8AC04E802B112CB400084EE6 /* buildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buildings.json; sourceTree = "<group>"; };
 		8AC04E832B112D5F00084EE6 /* JSONFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFetch.swift; sourceTree = "<group>"; };
 		8AC04E852B11329000084EE6 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		8ACF26EE2B222FE1009E1994 /* TestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				8A0691F62B11010000448041 /* ContentView.swift */,
 				8A0691F82B11010100448041 /* Assets.xcassets */,
 				8A0691FA2B11010100448041 /* Preview Content */,
+				8ACF26EE2B222FE1009E1994 /* TestPage.swift */,
 			);
 			path = FinalProject;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				8A9939C12B1512FD00DA3022 /* MapView.swift in Sources */,
 				8A9939BF2B15129A00DA3022 /* BuildingListView.swift in Sources */,
 				8AC04E862B11329000084EE6 /* Structs.swift in Sources */,
+				8ACF26EF2B222FE1009E1994 /* TestPage.swift in Sources */,
 				8A9939C72B1517C200DA3022 /* Functions.swift in Sources */,
 				8AC04E842B112D5F00084EE6 /* JSONFetch.swift in Sources */,
 				8A9133F32B1D19DB00EA2CC4 /* SavedButton.swift in Sources */,

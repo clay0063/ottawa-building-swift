@@ -60,16 +60,16 @@ struct SavedListView: View {
                     BuildingCards(data: building)
                 }
                 
-//                .contextMenu {
-//                    //context menu allows you to create additional buttons when long pressed
-//                    Button(role: .destructive) {
-//                        if let index = favorites.firstIndex(where: { $0.id == info.id }) {
-//                            favorites.remove(at: index)
-//                        }
-//                    } label: {
-//                        Label("Remove from Favorites", systemImage: "trash")
-//                    }
-//                }
+                .contextMenu {
+                    //context menu allows you to create additional buttons when long pressed
+                    Button(role: .destructive) {
+                        if let index = savedList.firstIndex(where: { $0.buildingId == building.buildingId }) {
+                            savedList.remove(at: index)
+                        }
+                    } label: {
+                        Label("Remove from Favorites", systemImage: "trash")
+                    }
+                }
                 
                 .onTapGesture {
                     popUpMenu.toggle()
