@@ -7,10 +7,12 @@
 
 import SwiftUI
 
+
 struct BuildingDetailView: View {
     let data: Building
     @Binding var savedList: [Building]
     let dataList: [Building]
+    let filtering = BuildingFiltering()
     
     var body: some View {
         let imageURL = data.image.replacingOccurrences(of: ".jpg", with: "")
@@ -65,17 +67,26 @@ struct BuildingDetailView: View {
                 
                 VStack {
                     Text("Amenities:")
-                    Text("Shuttle: \(data.isShuttle ? "True" : "False")")
-                    Text("Public Washrooms: \(data.isPublicWashrooms ? "True" : "False")")
-                    Text("Accessible: \(data.isAccessible ? "True" : "False")")
-                    Text("Free Parking: \(data.isFreeParking ? "True" : "False")")
-                    Text("Bike Parking: \(data.isBikeParking ? "True" : "False")")
-                    Text("Paid Parking: \(data.isPaidParking ? "True" : "False")")
-                    Text("Family Friendly: \(data.isFamilyFriendly ? "True" : "False")")
-                    Text("Guided Tour: \(data.isGuidedTour ? "True" : "False")")
-                    Text("OC Transpo: \(data.isOCTranspoNearby ? "True" : "False")")
+
+                    ForEach(filtering.listOfFeatures, id: \.name) { feature in
+                        //reads tuple list, connects to key in building, sees if its true
+                        let (featureName, keyPath) = feature
+                        let isFeatureEnabled = data[keyPath: keyPath]
+
+                        HStack {
+                            //if its true, it displays it as an icon
+                            if isFeatureEnabled {
+                                filtering.featureIcons[featureName]?
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30)
+                            }
+                        }
+                    }
+
                     Divider()
                 }.padding(.bottom)
+                
                 
                 VStack {
                     Text("Latitude: \(data.latitude)")
@@ -84,7 +95,7 @@ struct BuildingDetailView: View {
                 }
                 
             }.frame(maxHeight: .infinity)
-            .padding()
+                .padding()
         }
     }
 }
