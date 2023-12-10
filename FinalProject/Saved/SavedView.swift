@@ -57,7 +57,7 @@ struct SavedListView: View {
                 NavigationLink(
                     destination: BuildingDetailView(data: building, savedList: $savedList, dataList: dataList)
                 ) {
-                    BuildingCards(data: building)
+                    BuildingCards(data: building, savedList: $savedList)
                 }
                 
                 .contextMenu {

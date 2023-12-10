@@ -23,6 +23,21 @@ class BuildingFiltering {
         ("Open Sunday", \.isOpenSunday),
     ]
     
+    let featureImages: [String: Image] = [
+            "Shuttle": Image("shuttle"),
+            "Public Washrooms": Image("washroom"),
+            "Accessible": Image("accessibility"),
+            "Free Parking": Image("freeParking"),
+            "Bike Parking": Image("bikeracks"),
+            "Paid Parking": Image("paidparking"),
+            "Guided Tour": Image("guidedTour"),
+            "Family Friendly": Image("familyFriendly"),
+            "OC Transpo": Image("ocTranspo"),
+            "Open Saturday": Image("saturdayEnglish"),
+            "Open Sunday": Image("sundayEnglish"),
+        ]
+    
+    
     func filterData(buildings: [Building], selectedFeatures: Set<String>, selectedCategory: String, selectedSortBy: String) -> [Building] {
         var filteredList = buildings
         //FILTER FEATURE
@@ -32,36 +47,6 @@ class BuildingFiltering {
                 return (!selectedFeatures.contains(feature.name) || featureValue)
             }
         }
-//        if selectedFeature != "Clear Features" && selectedFeature != "Placeholder" {
-//            filteredList = filteredList.filter { building in
-//                    switch selectedFeature {
-//                    case "isShuttle":
-//                        return building.isShuttle
-//                    case "isPublicWashrooms":
-//                        return building.isPublicWashrooms
-//                    case "isAccessible":
-//                        return building.isAccessible
-//                    case "isFreeParking":
-//                        return building.isFreeParking
-//                    case "isBikeParking":
-//                        return building.isBikeParking
-//                    case "isPaidParking":
-//                        return building.isPaidParking
-//                    case "isGuidedTour":
-//                        return building.isGuidedTour
-//                    case "isFamilyFriendly":
-//                        return building.isFamilyFriendly
-//                    case "isOCTranspoNearby":
-//                        return building.isOCTranspoNearby
-//                    case "isOpenSaturday":
-//                        return building.isOpenSaturday
-//                    case "isOpenSunday":
-//                        return building.isOpenSunday
-//                    default:
-//                        return false
-//                    }
-//                }
-//        }
         
         //FILTER CATEGORY
         if selectedCategory != "All Categories" && selectedCategory != "Placeholder" {
