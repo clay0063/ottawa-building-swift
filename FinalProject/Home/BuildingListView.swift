@@ -41,10 +41,21 @@ struct BuildingListView: View {
                     }
                 }
                 .navigationTitle("Test")
-                .navigationBarItems(trailing:  Button("Filter") {
-                    isFilterSheetPresented.toggle()
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            isFilterSheetPresented.toggle()
+                        } label: {
+                            Image("filterIcon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30)
+                                .padding(10)
+                            
+                        }
+                    }
                 }
-                ).sheet(isPresented: $isFilterSheetPresented) {
+                .sheet(isPresented: $isFilterSheetPresented) {
                     FilterSheet(listData: listData, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy, selectedFeatures: $selectedFeatures)
                 }
             }
