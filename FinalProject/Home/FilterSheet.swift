@@ -30,8 +30,13 @@ struct FilterSheet: View {
                 Button(action: {
                     toggleCategory(category.name)
                 }) {
-                    Text(category.name)
-                        .fontWeight(selectedFeatures.contains(category.name) ? .bold : .regular)
+                    HStack {
+                        filtering.featureIcons[category.name]!
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30)
+                            .fontWeight(selectedFeatures.contains(category.name) ? .bold : .regular)
+                    }
                 }
             }
             

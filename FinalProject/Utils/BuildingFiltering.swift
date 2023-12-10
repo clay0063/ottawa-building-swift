@@ -23,13 +23,13 @@ class BuildingFiltering {
         ("Open Sunday", \.isOpenSunday),
     ]
     
-    let featureImages: [String: Image] = [
+    let featureIcons: [String: Image] = [
             "Shuttle": Image("shuttle"),
             "Public Washrooms": Image("washroom"),
             "Accessible": Image("accessibility"),
             "Free Parking": Image("freeParking"),
             "Bike Parking": Image("bikeracks"),
-            "Paid Parking": Image("paidparking"),
+            "Paid Parking": Image("paidParking"),
             "Guided Tour": Image("guidedTour"),
             "Family Friendly": Image("familyFriendly"),
             "OC Transpo": Image("ocTranspo"),
