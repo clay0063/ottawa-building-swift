@@ -35,7 +35,7 @@ struct FilterSheet: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 30)
-                            .fontWeight(selectedFeatures.contains(category.name) ? .bold : .regular)
+                            .opacity(selectedFeatures.contains(category.name) ? 1.0 : 0.5)
                     }
                 }
             }
