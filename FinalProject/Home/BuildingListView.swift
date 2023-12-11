@@ -51,6 +51,7 @@ struct BuildingListView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 30)
                             .padding(10)
+                            .foregroundStyle(.gray)
                         
                     }
                     

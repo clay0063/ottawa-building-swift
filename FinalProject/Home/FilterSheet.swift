@@ -24,7 +24,7 @@ struct FilterSheet: View {
     let filtering = BuildingFiltering()
     
     var body: some View {
-        VStack {
+        ScrollView {
             VStack(alignment: .leading) {
                 Text("Sort By")
                 Picker("Sort by", selection: $selectedSortBy) {
@@ -56,34 +56,58 @@ struct FilterSheet: View {
             
             Divider()
             
-            VStack {
+            VStack(alignment: .leading) {
                 
                 Text("Filter:")
-                Grid(alignment: .bottomLeading,
-                horizontalSpacing: 40,
-                verticalSpacing: 10) {
+                VStack{
                     ForEach(filtering.listOfFeatures, id: \.name) { feature in
                         Button(action: {
                             toggleCategory(feature.name)
                         }) {
                             
-                            GridRow {
-                                filtering.featureIcons[feature.name]!
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 30)
-                                    .opacity(selectedFeatures.contains(feature.name) ? 1.0 : 0.5)
-                                Text(feature.name)
-                                    .gridCellAnchor(.bottomLeading)
+                            HStack {
+                                HStack {
+                                    filtering.featureIcons[feature.name]!
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                }
+                                .frame(width:50)
+                                
+                                VStack(alignment: .leading) {
+                                    Text(feature.name)
+                                        .gridCellAnchor(.bottomLeading)
+                                        .foregroundStyle(.gray)
+                                }
+                                .padding(.leading, 20)
+                                
+                                
+                                Spacer()
+                                
+                                if selectedFeatures.contains(feature.name) {
+                                    Image(systemName: "checkmark.square.fill")
+                                        .gridCellAnchor(.bottomTrailing)
+                                        .padding(.leading, 10)
+                                        .foregroundStyle(.gray)
+                                } else {
+                                    Image(systemName: "square")
+                                        .gridCellAnchor(.bottomTrailing)
+                                        .padding(.leading, 10)
+                                        .foregroundStyle(.gray)
+                                }
+                                
+                                    
                                 
                             }
+                            .frame(height: 25)
+                            .frame(maxWidth: .infinity)
                             
                         }
                     }
                 }
                 
             }
-            .padding(.vertical)
+            .frame(maxWidth: .infinity)
+            .padding()
             
         }
         .padding()
