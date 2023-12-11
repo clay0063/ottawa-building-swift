@@ -13,21 +13,21 @@ struct SavedView: View {
     var lm: LocationManager
     
     var body: some View {
-        VStack {
-            NavigationStack {
-                VStack{
-                    if savedList.isEmpty {
-                        SavedIsEmptyView()
-                    } else {
-                        SavedListView(dataList: dataList, savedList: $savedList, lm: lm)
-                    }
-                    
+        NavigationStack {
+            VStack{
+                if savedList.isEmpty {
+                    SavedIsEmptyView()
+                } else {
+                    SavedListView(dataList: dataList, savedList: $savedList, lm: lm)
+                        
                 }
-                .padding(.horizontal)
-                .navigationTitle("Saved Buildings")
+                
             }
-            
+            .padding(.horizontal)
+            .navigationTitle("Saved Buildings")
         }
+        
+        
     }
 }
 
@@ -51,34 +51,21 @@ struct SavedListView: View {
     var dataList: [Building]
     @Binding var savedList: [Building]
     var lm: LocationManager
-    @State var popUpMenu = false
+    @State private var searchName = ""
     
     var body: some View {
         ScrollView {
-            ForEach(savedList, id: \.id) { building in
+            ForEach(savedList.filter {
+                searchName.isEmpty || $0.name.lowercased().contains(searchName.lowercased())
+            }, id: \.id) { building in
                 NavigationLink(
                     destination: BuildingDetailView(data: building, savedList: $savedList, dataList: dataList)
                 ) {
                     BuildingCards(data: building, savedList: $savedList, lm: lm)
                 }
-                
-                .contextMenu {
-                    //context menu allows you to create additional buttons when long pressed
-                    Button(role: .destructive) {
-                        if let index = savedList.firstIndex(where: { $0.buildingId == building.buildingId }) {
-                            savedList.remove(at: index)
-                        }
-                    } label: {
-                        Label("Remove from Favorites", systemImage: "trash")
-                    }
-                }
-                
-                .onTapGesture {
-                    popUpMenu.toggle()
-                }
                 .padding(.bottom, 20.0)
             }
             
-        }
+        }.searchable(text: $searchName, prompt: "Search...")
     }
 }
