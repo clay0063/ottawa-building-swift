@@ -33,13 +33,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             hasPermission = status == .authorizedWhenInUse //toggles the status if user approves/rejects location access later
         }
     
-    func findDistanceFromUser(userLat: Double, userLong: Double, buildingLat: Double, buildingLong: Double) -> String {
+    func findDistanceFromUser(userLat: Double, userLong: Double, buildingLat: Double, buildingLong: Double) -> Double {
         let userCoord = CLLocation(latitude: userLat, longitude: userLong)
         let buildingCoord = CLLocation(latitude: buildingLat, longitude: buildingLong)
         
         let distanceInMeters = userCoord.distance(from: buildingCoord)
         let distanceInKM = abs(distanceInMeters / 1000)
         
-        return String(format:"%.2f", distanceInKM)
+        return distanceInKM
     }
 }

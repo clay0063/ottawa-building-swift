@@ -24,18 +24,18 @@ class BuildingFiltering {
     ]
     
     let featureIcons: [String: Image] = [
-            "Shuttle": Image("shuttle"),
-            "Public Washrooms": Image("washroom"),
-            "Accessible": Image("accessibility"),
-            "Free Parking": Image("freeParking"),
-            "Bike Parking": Image("bikeracks"),
-            "Paid Parking": Image("paidParking"),
-            "Guided Tour": Image("guidedTour"),
-            "Family Friendly": Image("familyFriendly"),
-            "OC Transpo": Image("ocTranspo"),
-            "Open Saturday": Image("saturdayEnglish"),
-            "Open Sunday": Image("sundayEnglish"),
-        ]
+        "Shuttle": Image("shuttle"),
+        "Public Washrooms": Image("washroom"),
+        "Accessible": Image("accessibility"),
+        "Free Parking": Image("freeParking"),
+        "Bike Parking": Image("bikeracks"),
+        "Paid Parking": Image("paidParking"),
+        "Guided Tour": Image("guidedTour"),
+        "Family Friendly": Image("familyFriendly"),
+        "OC Transpo": Image("ocTranspo"),
+        "Open Saturday": Image("saturdayEnglish"),
+        "Open Sunday": Image("sundayEnglish"),
+    ]
     
     
     
@@ -64,7 +64,19 @@ class BuildingFiltering {
         case "Z-A":
             return filteredList.sorted(by: {$0.name > $1.name})
         case "Distance":
-            return filteredList
+            let distanceSort = filteredList.sorted(by: {
+                let lm = LocationManager()
+                
+                let userLat = (lm.userLocation != nil) ? lm.userLocation!.coordinate.latitude : 0
+                let userLong = (lm.userLocation != nil) ? lm.userLocation!.coordinate.longitude : 0
+                
+                let distance1 = lm.findDistanceFromUser(userLat: userLat, userLong: userLong, buildingLat: $0.latitude, buildingLong: $0.longitude)
+                let distance2 = lm.findDistanceFromUser(userLat: userLat, userLong: userLong, buildingLat: $1.latitude, buildingLong: $1.longitude)
+                print("Sorted")
+                return distance1 > distance2
+            })
+            return distanceSort
+            
         default:
             return filteredList
         }
