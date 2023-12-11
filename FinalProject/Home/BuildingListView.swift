@@ -25,42 +25,46 @@ struct BuildingListView: View {
     }
     
     var body: some View {
-        VStack {
-            NavigationStack {
-                ScrollView {
-                    LazyVStack {
-                        ForEach(filteredData.filter { building in
-                            return searchName.isEmpty || building.name.lowercased().contains(searchName.lowercased())
-                        }) { building in
-                            NavigationLink(
-                                destination: BuildingDetailView(data: building, savedList: $savedList, dataList: listData)
-                            ) {
-                                BuildingCards(data: building, savedList: $savedList)
-                            }
+        
+        NavigationStack {
+            ScrollView {
+                LazyVStack {
+                    ForEach(filteredData.filter { building in
+                        return searchName.isEmpty || building.name.lowercased().contains(searchName.lowercased())
+                    }) { building in
+                        NavigationLink(
+                            destination: BuildingDetailView(data: building, savedList: $savedList, dataList: listData)
+                        ) {
+                            BuildingCards(data: building, savedList: $savedList)
                         }
                     }
-                }
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            isFilterSheetPresented.toggle()
-                        } label: {
-                            Image("filterIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30)
-                                .padding(10)
-                            
-                        }
-                    }
-                }
-                .sheet(isPresented: $isFilterSheetPresented) {
-                    FilterSheet(listData: listData, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy, selectedFeatures: $selectedFeatures)
                 }
             }
-            .searchable(text: $searchName, prompt: "Search...")
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Building List")
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        isFilterSheetPresented.toggle()
+                    } label: {
+                        Image("filterIcon")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30)
+                            .padding(10)
+                        
+                    }
+                    
+                }
+            }
+            .sheet(isPresented: $isFilterSheetPresented) {
+                FilterSheet(listData: listData, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy, selectedFeatures: $selectedFeatures)
+            }
         }
-        .padding()
+        .searchable(text: $searchName, prompt: "Search...")
+        
     }
 }
 

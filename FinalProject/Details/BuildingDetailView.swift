@@ -30,7 +30,8 @@ struct BuildingDetailView: View {
             //                DetailsMapView(data: data)
             
         }
-        .frame(maxHeight: .infinity)
+        .padding(.vertical, 0)
+        .padding(.horizontal)
     }
 }
 
