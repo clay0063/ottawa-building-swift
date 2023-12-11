@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @StateObject var jsonFetch = JSONFetch()
     @State private var savedList = [Building]()
@@ -49,3 +50,19 @@ struct ContentView: View {
 
 
 
+
+
+//KNOWN BUGS:
+//Safari view opens with padding around it
+//  Attempted fixes:
+//      -Adding ignore safe area inset
+//  Most likely explanation:
+//      -It's opening with a navlink, so it has the previous navstack padding around it
+
+//Un-faving on Save screen boots back to home
+//  Attempted fixes:
+//      -Going based on list index instead of list item (made things more unstable)
+//  Most likely explanation:
+//      -Editing the list causes the UI to refresh, which sends back to home fsr
+//  Next step:
+//      -Make two lists - a copy of the saved list ???

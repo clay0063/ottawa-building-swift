@@ -18,6 +18,7 @@
 		8A44B4402B2687E600740307 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B43F2B2687E600740307 /* Categories.swift */; };
 		8A44B4422B26927000740307 /* DetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B4412B26927000740307 /* DetailsHeaderView.swift */; };
 		8A44B4462B26A20300740307 /* DetailsFeaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B4452B26A20300740307 /* DetailsFeaturesView.swift */; };
+		8A44B4482B276FEE00740307 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B4472B276FEE00740307 /* LocationManager.swift */; };
 		8A5438C52B1BA29A0056C17C /* BuildingFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */; };
 		8A9133F32B1D19DB00EA2CC4 /* SavedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9133F22B1D19DB00EA2CC4 /* SavedButton.swift */; };
 		8A9939BB2B15082D00DA3022 /* BuildingCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939BA2B15082D00DA3022 /* BuildingCards.swift */; };
@@ -65,6 +66,8 @@
 		8A44B43F2B2687E600740307 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		8A44B4412B26927000740307 /* DetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHeaderView.swift; sourceTree = "<group>"; };
 		8A44B4452B26A20300740307 /* DetailsFeaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsFeaturesView.swift; sourceTree = "<group>"; };
+		8A44B4472B276FEE00740307 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		8A44B4492B27703F00740307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingFiltering.swift; sourceTree = "<group>"; };
 		8A9133F22B1D19DB00EA2CC4 /* SavedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedButton.swift; sourceTree = "<group>"; };
 		8A9939BA2B15082D00DA3022 /* BuildingCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingCards.swift; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		8A0691F32B11010000448041 /* FinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				8A44B4492B27703F00740307 /* Info.plist */,
 				8A9939B52B1507B700DA3022 /* Home */,
 				8A9939B62B1507C400DA3022 /* Map */,
 				8A9939B72B1507D800DA3022 /* Saved */,
@@ -222,6 +226,7 @@
 				8A9939C62B1517C200DA3022 /* Functions.swift */,
 				8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */,
 				8A44B43F2B2687E600740307 /* Categories.swift */,
+				8A44B4472B276FEE00740307 /* LocationManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 				8A5438C52B1BA29A0056C17C /* BuildingFiltering.swift in Sources */,
 				8A0691F72B11010000448041 /* ContentView.swift in Sources */,
 				8A0691F52B11010000448041 /* FinalProjectApp.swift in Sources */,
+				8A44B4482B276FEE00740307 /* LocationManager.swift in Sources */,
 				8A9939C52B15131200DA3022 /* MoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,6 +547,9 @@
 				DEVELOPMENT_TEAM = V94L67MHG8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FinalProject/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Identify your distance from building locations";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Identify your distance from building locations";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -570,6 +579,9 @@
 				DEVELOPMENT_TEAM = V94L67MHG8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FinalProject/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Identify your distance from building locations";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Identify your distance from building locations";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

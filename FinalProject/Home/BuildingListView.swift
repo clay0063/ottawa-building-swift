@@ -11,21 +11,20 @@ struct BuildingListView: View {
     var listData: [Building]
     @Binding var savedList: [Building]
     @State private var searchName = ""
-    //    @State private var selectedFeatures = "Placeholder"
     @State private var selectedCategory = "Placeholder"
     @State private var selectedSortBy = "Placeholder"
     let filtering = BuildingFiltering()
     @State private var selectedFeatures: Set<String> = []
     @State private var isFilterSheetPresented = false
+    @ObservedObject var locationManager = LocationManager()
     
-    
+    //user location = locationManager.userLocation?.coordinate.latitude / longitude
     
     var filteredData: [Building] {
         return filtering.filterData(buildings: listData, selectedFeatures: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy)
     }
     
     var body: some View {
-        
         NavigationStack {
             ScrollView {
                 LazyVStack {
