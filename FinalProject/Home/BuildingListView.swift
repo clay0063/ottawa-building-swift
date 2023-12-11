@@ -10,6 +10,7 @@ import SwiftUI
 struct BuildingListView: View {
     var listData: [Building]
     @Binding var savedList: [Building]
+    var lm: LocationManager
     @State private var searchName = ""
     @State private var selectedCategory = "Placeholder"
     @State private var selectedSortBy = "Placeholder"
@@ -18,7 +19,7 @@ struct BuildingListView: View {
     @State private var isFilterSheetPresented = false
     
     var filteredData: [Building] {
-        return filtering.filterData(buildings: listData, selectedFeatures: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy)
+        return filtering.filterData(buildings: listData, selectedFeatures: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy, lm: lm)
     }
     
     var body: some View {
@@ -31,7 +32,7 @@ struct BuildingListView: View {
                         NavigationLink(
                             destination: BuildingDetailView(data: building, savedList: $savedList, dataList: listData)
                         ) {
-                            BuildingCards(data: building, savedList: $savedList)
+                            BuildingCards(data: building, savedList: $savedList, lm: lm)
                         }
                     }
                 }

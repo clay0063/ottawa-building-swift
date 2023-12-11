@@ -10,6 +10,7 @@ import SwiftUI
 struct SavedView: View {
     var dataList: [Building]
     @Binding var savedList: [Building]
+    var lm: LocationManager
     
     var body: some View {
         VStack {
@@ -18,7 +19,7 @@ struct SavedView: View {
                     if savedList.isEmpty {
                         SavedIsEmptyView()
                     } else {
-                        SavedListView(dataList: dataList, savedList: $savedList)
+                        SavedListView(dataList: dataList, savedList: $savedList, lm: lm)
                     }
                     
                 }
@@ -49,6 +50,7 @@ struct SavedIsEmptyView: View {
 struct SavedListView: View {
     var dataList: [Building]
     @Binding var savedList: [Building]
+    var lm: LocationManager
     @State var popUpMenu = false
     
     var body: some View {
@@ -57,7 +59,7 @@ struct SavedListView: View {
                 NavigationLink(
                     destination: BuildingDetailView(data: building, savedList: $savedList, dataList: dataList)
                 ) {
-                    BuildingCards(data: building, savedList: $savedList)
+                    BuildingCards(data: building, savedList: $savedList, lm: lm)
                 }
                 
                 .contextMenu {

@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @ObservedObject var lm = LocationManager()
     @StateObject var jsonFetch = JSONFetch()
     @State private var savedList = [Building]()
     @State private var selectedTab = 0
@@ -17,19 +18,19 @@ struct ContentView: View {
         let listEN = jsonFetch.buildingDataEN
         //        let listFR = jsonFetch.buildingDataFR
         TabView(selection: $selectedTab) {
-            BuildingListView(listData: listEN, savedList: $savedList)
+            BuildingListView(listData: listEN, savedList: $savedList, lm: lm)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
                 .tag(0)
-            MapView(listData: listEN, savedList: $savedList)
+            MapView(listData: listEN, savedList: $savedList, lm: lm)
                 .tabItem {
                     Image(systemName: "map")
                     Text("Map")
                 }
                 .tag(1)
-            SavedView(dataList: listEN, savedList: $savedList)
+            SavedView(dataList: listEN, savedList: $savedList, lm: lm)
                 .tabItem {
                     Image(systemName: "suit.heart")
                     Text("Saved")

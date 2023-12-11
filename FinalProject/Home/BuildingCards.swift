@@ -10,6 +10,7 @@ import SwiftUI
 struct BuildingCards: View {
     let data: Building
     @Binding var savedList: [Building]
+    var lm: LocationManager
     
     var body: some View {
         let imageURL = data.image.replacingOccurrences(of: ".jpg", with: "")
@@ -41,7 +42,7 @@ struct BuildingCards: View {
                             Text(data.address)
                                 .multilineTextAlignment(.leading)
                             Spacer()
-                            LocationFromYou(data: data)
+                            LocationFromYou(data: data, lm: lm)
                         }
                         .foregroundColor(Color.gray)
                     }
@@ -61,15 +62,15 @@ struct BuildingCards: View {
 
 struct LocationFromYou: View {
     var data: Building
-    @ObservedObject var locationManager = LocationManager()
+    var lm: LocationManager
     
     var body: some View {
         
-        if locationManager.hasPermission {
-            let distanceFromYou = locationManager.findDistanceFromUser(
+        if lm.hasPermission {
+            let distanceFromYou = lm.findDistanceFromUser(
                 //if we have permission, it shouldnt be nil, but error handle to be safe
-                userLat: (locationManager.userLocation != nil) ? locationManager.userLocation!.coordinate.latitude : 0,
-                userLong: (locationManager.userLocation != nil) ? locationManager.userLocation!.coordinate.longitude : 0,
+                userLat: (lm.userLocation != nil) ? lm.userLocation!.coordinate.latitude : 0,
+                userLong: (lm.userLocation != nil) ? lm.userLocation!.coordinate.longitude : 0,
                 buildingLat: data.latitude,
                 buildingLong: data.longitude
             )

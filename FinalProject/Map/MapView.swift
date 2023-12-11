@@ -11,6 +11,7 @@ import MapKit
 struct MapView: View {
     var listData: [Building]
     @Binding var savedList: [Building]
+    var lm: LocationManager
     @State private var position: MapCameraPosition = .automatic
     @State private var selectedItem: Int?
     @State private var isSheetPresented = false

@@ -40,7 +40,7 @@ class BuildingFiltering {
     
     
     
-    func filterData(buildings: [Building], selectedFeatures: Set<String>, selectedCategory: String, selectedSortBy: String) -> [Building] {
+    func filterData(buildings: [Building], selectedFeatures: Set<String>, selectedCategory: String, selectedSortBy: String, lm: LocationManager) -> [Building] {
         var filteredList = buildings
         //FILTER FEATURE
         filteredList = filteredList.filter { item in
@@ -64,16 +64,17 @@ class BuildingFiltering {
         case "Z-A":
             return filteredList.sorted(by: {$0.name > $1.name})
         case "Distance":
+            guard lm.hasPermission else {
+                    return filteredList
+                }
+            
             let distanceSort = filteredList.sorted(by: {
-                let lm = LocationManager()
-                
                 let userLat = (lm.userLocation != nil) ? lm.userLocation!.coordinate.latitude : 0
                 let userLong = (lm.userLocation != nil) ? lm.userLocation!.coordinate.longitude : 0
                 
                 let distance1 = lm.findDistanceFromUser(userLat: userLat, userLong: userLong, buildingLat: $0.latitude, buildingLong: $0.longitude)
                 let distance2 = lm.findDistanceFromUser(userLat: userLat, userLong: userLong, buildingLat: $1.latitude, buildingLong: $1.longitude)
-                print("Sorted")
-                return distance1 > distance2
+                return distance1 < distance2
             })
             return distanceSort
             
