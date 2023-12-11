@@ -67,3 +67,5 @@ struct ContentView: View {
 //      -Editing the list causes the UI to refresh, which sends back to home fsr
 //  Next step:
 //      -Make two lists - a copy of the saved list ???
+
+//Washroom icon missing???

@@ -25,23 +25,22 @@ struct FilterSheet: View {
     
     var body: some View {
         VStack {
-            Text("Filter:")
-            ForEach(filtering.listOfFeatures, id: \.name) { category in
-                Button(action: {
-                    toggleCategory(category.name)
-                }) {
-                    HStack {
-                        filtering.featureIcons[category.name]!
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30)
-                            .opacity(selectedFeatures.contains(category.name) ? 1.0 : 0.5)
+            VStack(alignment: .leading) {
+                Text("Sort By")
+                Picker("Sort by", selection: $selectedSortBy) {
+                    ForEach(sortOptions, id: \.self) { option in
+                        Text(option)
                     }
                 }
+                .pickerStyle(SegmentedPickerStyle())
             }
+            .padding(.bottom)
             
-            VStack {
+            Divider()
+            
+            VStack(alignment: .leading) {
                 
+                Text("Building Category")
                 Picker("Categories", selection: $selectedCategory) {
                     if selectedCategory == "Placeholder" {
                         Text("Pick Category").tag("Placeholder")
@@ -49,19 +48,45 @@ struct FilterSheet: View {
                     ForEach(sortCategories, id: \.self) { option in
                         Text(option)
                     }
-                }.pickerStyle(MenuPickerStyle())
-                
-                Text("Sort by...")
-                Picker("Sort by", selection: $selectedSortBy) {
-                    ForEach(sortOptions, id: \.self) { option in
-                        Text(option)
-                    }
                 }
-                .pickerStyle(SegmentedPickerStyle())
+                .pickerStyle(InlinePickerStyle())
                 
             }
+            .padding(.vertical)
+            
+            Divider()
+            
+            VStack {
+                
+                Text("Filter:")
+                Grid(alignment: .bottomLeading,
+                horizontalSpacing: 40,
+                verticalSpacing: 10) {
+                    ForEach(filtering.listOfFeatures, id: \.name) { feature in
+                        Button(action: {
+                            toggleCategory(feature.name)
+                        }) {
+                            
+                            GridRow {
+                                filtering.featureIcons[feature.name]!
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30)
+                                    .opacity(selectedFeatures.contains(feature.name) ? 1.0 : 0.5)
+                                Text(feature.name)
+                                    .gridCellAnchor(.bottomLeading)
+                                
+                            }
+                            
+                        }
+                    }
+                }
+                
+            }
+            .padding(.vertical)
             
         }
+        .padding()
     }
     
     private func toggleCategory(_ category: String) {
