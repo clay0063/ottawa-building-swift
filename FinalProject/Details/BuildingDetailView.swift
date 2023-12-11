@@ -12,7 +12,7 @@ struct BuildingDetailView: View {
     let data: Building
     @Binding var savedList: [Building]
     let dataList: [Building]
-    let filtering = BuildingFiltering()
+    let categoryManager = CategoryManager()
     
     var body: some View {
         let imageURL = data.image.replacingOccurrences(of: ".jpg", with: "")
@@ -22,13 +22,16 @@ struct BuildingDetailView: View {
                     Image(imageURL, label: Text("\(data.imageDescription)"))
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 300)
+                        .frame(maxWidth: .infinity)
+                        .padding(0)
                 }
                 
                 VStack(alignment: .leading){
                     HStack {
-                        Image(systemName: "heart")
-                        Image(systemName: "square.and.arrow.up")
+                        SavedButton(data: data, savedList: $savedList).padding(.trailing, 25.0)
+                        if let websiteURL = fixURL(data.website) {
+                            ShareLink(Text(""), item: websiteURL)
+                        }
                         Spacer()
                         Text("NEW!").opacity(data.isNew ? 1 : 0)
                     }
@@ -37,65 +40,28 @@ struct BuildingDetailView: View {
                         .fontWeight(.bold)
                         .multilineTextAlignment(.leading)
                         .padding(.vertical, 2.0)
-                    Divider()
                     
-                }.padding(.bottom)
-                
-                VStack {
-                    SavedButton(data: data, savedList: $savedList)
-                }
-                
-                VStack {
-                    Text("Categories:")
-                    Text("\(data.category)")
-                    Divider()
-                }.padding(.bottom)
-                
-                VStack {
-                    Text("Weekend Hours:")
-                    Text("Saturdau: \(data.isOpenSaturday ? "\(data.saturdayStart) - \(data.saturdayClose)" : "Closed")")
-                    Text("Sunday: \(data.isOpenSunday ? "\(data.sundayStart) - \(data.sundayClose)" : "Closed")")
-                    Divider()
-                }.padding(.bottom)
-                
-                VStack {
-                    Text("Description")
-                    Text("Description: \(data.description)")
-                    Text("Website: \(data.website)")
-                    Divider()
-                }.padding(.bottom)
-                
-                VStack {
-                    Text("Amenities:")
-
-                    ForEach(filtering.listOfFeatures, id: \.name) { feature in
-                        //reads tuple list, connects to key in building, sees if its true
-                        let (featureName, keyPath) = feature
-                        let isFeatureEnabled = data[keyPath: keyPath]
-
+                    if let categoryWithIcon = categoryManager.categoriesWithIcons.first(where: { $0.category == data.category }) {
+                        
                         HStack {
-                            //if its true, it displays it as an icon
-                            if isFeatureEnabled {
-                                filtering.featureIcons[featureName]?
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 30)
-                            }
+                            categoryWithIcon.icon
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 20)
+                            
+                            Text(data.category)
                         }
                     }
-
                     Divider()
                 }.padding(.bottom)
                 
+                //                DetailsHoursView(data: data)
+                //                DetailsDescriptionView(data: data)
+                //                DetailsFeaturesView(data: data)
+                //                DetailsMapView(data: data)
                 
-                VStack {
-                    Text("Latitude: \(data.latitude)")
-                    Text("Longitude: \(data.longitude)")
-                    Text("Address: \(data.address)")
-                }
-                
-            }.frame(maxHeight: .infinity)
-                .padding()
+            }
+            .frame(maxHeight: .infinity)
         }
     }
 }
@@ -103,4 +69,67 @@ struct BuildingDetailView: View {
 
 #Preview {
     ContentView()
+}
+
+struct DetailsHoursView: View {
+    var data: Building
+    var body: some View {
+        VStack {
+            Text("Weekend Hours:")
+            Text("Saturdau: \(data.isOpenSaturday ? "\(data.saturdayStart) - \(data.saturdayClose)" : "Closed")")
+            Text("Sunday: \(data.isOpenSunday ? "\(data.sundayStart) - \(data.sundayClose)" : "Closed")")
+            Divider()
+        }.padding(.bottom)
+    }
+}
+
+struct DetailsDescriptionView: View {
+    var data: Building
+    var body: some View {
+        VStack {
+            Text("Description")
+            Text("Description: \(data.description)")
+            Text("Website: \(data.website)")
+            Divider()
+        }.padding(.bottom)
+    }
+}
+
+struct DetailsFeaturesView: View {
+    var data: Building
+    let filtering = BuildingFiltering()
+    var body: some View {
+        VStack {
+            Text("Amenities:")
+            
+            ForEach(filtering.listOfFeatures, id: \.name) { feature in
+                //reads tuple list, connects to key in building, sees if its true
+                let (featureName, keyPath) = feature
+                let isFeatureEnabled = data[keyPath: keyPath]
+                
+                HStack {
+                    //if its true, it displays it as an icon
+                    if isFeatureEnabled {
+                        filtering.featureIcons[featureName]?
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30)
+                    }
+                }
+            }
+            
+            Divider()
+        }.padding(.bottom)
+    }
+}
+
+struct DetailsMapView: View {
+    var data: Building
+    var body: some View {
+        VStack {
+            Text("Latitude: \(data.latitude)")
+            Text("Longitude: \(data.longitude)")
+            Text("Address: \(data.address)")
+        }
+    }
 }

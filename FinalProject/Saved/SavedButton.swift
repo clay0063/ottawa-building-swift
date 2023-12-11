@@ -12,28 +12,31 @@ struct SavedButton: View {
     @Binding var savedList: [Building]
     var body: some View {
         Button {
-            if !savedList.contains(where: { fav in
-                //check if favorites does contains this country
-                fav.buildingId == data.buildingId
-            }) {
-                //adds it to fav array if not
-                savedList.append(data)
-            } else {
-                if let index = savedList.firstIndex(where: { fav in
-                    //checks if & WHERE country is in favs
+            withAnimation {
+                if !savedList.contains(where: { fav in
+                    // check if favorites contain this country
                     fav.buildingId == data.buildingId
                 }) {
-                    //removes it from favs
-                    savedList.remove(at: index)
+                    // adds it to fav array if not
+                    savedList.append(data)
+                } else {
+                    if let index = savedList.firstIndex(where: { fav in
+                        // checks if & WHERE country is in favs
+                        fav.buildingId == data.buildingId
+                    }) {
+                        // removes it from favs
+                        savedList.remove(at: index)
+                    }
                 }
             }
         } label: {
-            Label(savedList.contains(where: { fav in
+            Image(savedList.contains(where: { fav in
                 fav.buildingId == data.buildingId
-            }) ? "Saved!" : "Save Building", systemImage: "star")
-            .padding()
-            .foregroundStyle(.black)
-            .background(.yellow)
+            }) ? "favoriteGreyFilledIcon" : "favouriteOutlineGray")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(height:20)
+            
         }
     }
 }

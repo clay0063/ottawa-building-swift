@@ -38,6 +38,8 @@ class BuildingFiltering {
         ]
     
     
+    
+    
     func filterData(buildings: [Building], selectedFeatures: Set<String>, selectedCategory: String, selectedSortBy: String) -> [Building] {
         var filteredList = buildings
         //FILTER FEATURE
