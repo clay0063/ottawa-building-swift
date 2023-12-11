@@ -64,5 +64,6 @@ struct DetailsHeaderView: View {
                 }.padding(.leading, 20)
             }.padding(.vertical, 5)
         }
+        .frame(maxWidth: .infinity)
     }
 }

@@ -18,12 +18,12 @@ struct BuildingDetailView: View {
         ScrollView {
             DetailsHeaderView(data: data, savedList: $savedList)
             Divider()
-                .padding(.bottom)
             
             DetailsHoursView(data: data)
             Divider()
-                .padding(.bottom)
-            //                DetailsDescriptionView(data: data)
+            
+            DetailsDescriptionView(data: data)
+            Divider()
             //                DetailsFeaturesView(data: data)
             //                DetailsMapView(data: data)
             
@@ -43,24 +43,42 @@ struct BuildingDetailView: View {
 struct DetailsHoursView: View {
     var data: Building
     var body: some View {
-        VStack {
-            Text("Weekend Hours:")
+        VStack(alignment: .leading) {
+            Text("Weekend Hours")
+                .font(.headline)
+                .padding(.bottom)
             Text("Saturday: \(data.isOpenSaturday ? "\(timeFormatter(data.saturdayStart)) - \(timeFormatter(data.saturdayClose))" : "Closed")")
             Text("Sunday: \(data.isOpenSunday ? "\(timeFormatter(data.sundayStart)) - \(timeFormatter(data.sundayClose))" : "Closed")")
             
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
     }
 }
 
 struct DetailsDescriptionView: View {
     var data: Building
+    @State private var isFullDesc = false
+    
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("Description")
-            Text("Description: \(data.description)")
-            Text("Website: \(data.website)")
-            Divider()
-        }.padding(.bottom)
+                .font(.headline)
+                .padding(.bottom)
+            Text(data.description)
+                .multilineTextAlignment(.leading)
+                .lineLimit(isFullDesc ? nil : 5)
+            HStack {
+                Spacer()
+                Button(action: {
+                    isFullDesc.toggle()
+                }, label: {
+                    Text(isFullDesc ? "Show Less" : "Read More")
+                })
+            }.padding(.top, 2)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
     }
 }
 
