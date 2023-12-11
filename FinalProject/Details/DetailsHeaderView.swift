@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct DetailsHeaderView: View {
     var data: Building
@@ -23,7 +24,7 @@ struct DetailsHeaderView: View {
             }
             
             HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading) {
                     HStack {
                         SavedButton(data: data, savedList: $savedList).padding(.trailing, 25.0)
                         if let websiteURL = fixURL(data.website) {
@@ -51,6 +52,11 @@ struct DetailsHeaderView: View {
                         }
                     }
                     
+                    HStack {
+                        if !data.website.isEmpty {
+                            NavigationLink("Visit Website", destination: SafariViewWrap(url: fixURL(data.website)!)).ignoresSafeArea()
+                        }
+                    }
                     
                 }
                 
@@ -66,4 +72,20 @@ struct DetailsHeaderView: View {
         }
         .frame(maxWidth: .infinity)
     }
+}
+
+struct SafariViewWrap: UIViewControllerRepresentable {
+    let url: URL
+    
+    func makeUIViewController(context: Context) -> SFSafariViewController {
+        return SFSafariViewController(url: url)
+    }
+    
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {
+        // no updates
+    }
+}
+
+#Preview {
+    ContentView()
 }

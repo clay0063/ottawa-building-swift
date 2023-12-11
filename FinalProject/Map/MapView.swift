@@ -59,6 +59,7 @@ struct MapView: View {
             if let selectedPlace {
                 BuildingDetailView(data: selectedPlace, savedList: $savedList, dataList: listData)
                 //                    .presentationBackground(.thinMaterial)
+                    .padding(.horizontal)
                     .presentationDetents([.large])
                     .presentationCornerRadius(25)
             }

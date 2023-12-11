@@ -40,7 +40,6 @@ struct BuildingListView: View {
                         }
                     }
                 }
-                .navigationTitle("Test")
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {

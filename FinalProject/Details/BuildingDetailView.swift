@@ -24,7 +24,9 @@ struct BuildingDetailView: View {
             
             DetailsDescriptionView(data: data)
             Divider()
-            //                DetailsFeaturesView(data: data)
+            
+            DetailsFeaturesView(data: data)
+            Divider()
             //                DetailsMapView(data: data)
             
         }
@@ -82,33 +84,7 @@ struct DetailsDescriptionView: View {
     }
 }
 
-struct DetailsFeaturesView: View {
-    var data: Building
-    let filtering = BuildingFiltering()
-    var body: some View {
-        VStack {
-            Text("Amenities:")
-            
-            ForEach(filtering.listOfFeatures, id: \.name) { feature in
-                //reads tuple list, connects to key in building, sees if its true
-                let (featureName, keyPath) = feature
-                let isFeatureEnabled = data[keyPath: keyPath]
-                
-                HStack {
-                    //if its true, it displays it as an icon
-                    if isFeatureEnabled {
-                        filtering.featureIcons[featureName]?
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30)
-                    }
-                }
-            }
-            
-            Divider()
-        }.padding(.bottom)
-    }
-}
+
 
 struct DetailsMapView: View {
     var data: Building
