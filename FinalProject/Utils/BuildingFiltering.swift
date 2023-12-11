@@ -60,9 +60,9 @@ class BuildingFiltering {
         //SORT BY
         switch selectedSortBy {
         case "A-Z":
-            return filteredList.sorted(by: {$0.name < $1.name})
+            return filteredList.sorted(by: {$0.name.lowercased() < $1.name.lowercased()})
         case "Z-A":
-            return filteredList.sorted(by: {$0.name > $1.name})
+            return filteredList.sorted(by: {$0.name.lowercased() > $1.name.lowercased()})
         case "Distance":
             guard lm.hasPermission else {
                     return filteredList

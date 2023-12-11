@@ -13,7 +13,7 @@ struct BuildingListView: View {
     var lm: LocationManager
     @State private var searchName = ""
     @State private var selectedCategory = "Placeholder"
-    @State private var selectedSortBy = "Placeholder"
+    @State private var selectedSortBy = "A-Z"
     let filtering = BuildingFiltering()
     @State private var selectedFeatures: Set<String> = []
     @State private var isFilterSheetPresented = false

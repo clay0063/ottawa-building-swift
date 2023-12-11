@@ -51,15 +51,14 @@ struct FilterSheet: View {
                     }
                 }.pickerStyle(MenuPickerStyle())
                 
+                Text("Sort by...")
                 Picker("Sort by", selection: $selectedSortBy) {
-                    if selectedSortBy == "Placeholder" {
-                        Text("Sort by...").tag("Placeholder")
-                    }
                     ForEach(sortOptions, id: \.self) { option in
                         Text(option)
                     }
                 }
-                .pickerStyle(MenuPickerStyle())
+                .pickerStyle(SegmentedPickerStyle())
+                
             }
             
         }
