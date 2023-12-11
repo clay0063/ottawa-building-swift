@@ -16,6 +16,7 @@
 		8A0692122B11010100448041 /* FinalProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0692112B11010100448041 /* FinalProjectUITestsLaunchTests.swift */; };
 		8A44B43E2B26532C00740307 /* FilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B43D2B26532C00740307 /* FilterSheet.swift */; };
 		8A44B4402B2687E600740307 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B43F2B2687E600740307 /* Categories.swift */; };
+		8A44B4422B26927000740307 /* DetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B4412B26927000740307 /* DetailsHeaderView.swift */; };
 		8A5438C52B1BA29A0056C17C /* BuildingFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */; };
 		8A9133F32B1D19DB00EA2CC4 /* SavedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9133F22B1D19DB00EA2CC4 /* SavedButton.swift */; };
 		8A9939BB2B15082D00DA3022 /* BuildingCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939BA2B15082D00DA3022 /* BuildingCards.swift */; };
@@ -61,6 +62,7 @@
 		8A0692112B11010100448041 /* FinalProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8A44B43D2B26532C00740307 /* FilterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheet.swift; sourceTree = "<group>"; };
 		8A44B43F2B2687E600740307 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		8A44B4412B26927000740307 /* DetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHeaderView.swift; sourceTree = "<group>"; };
 		8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingFiltering.swift; sourceTree = "<group>"; };
 		8A9133F22B1D19DB00EA2CC4 /* SavedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedButton.swift; sourceTree = "<group>"; };
 		8A9939BA2B15082D00DA3022 /* BuildingCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingCards.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				8A9939BC2B15085300DA3022 /* BuildingDetailView.swift */,
+				8A44B4412B26927000740307 /* DetailsHeaderView.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				8A9939C12B1512FD00DA3022 /* MapView.swift in Sources */,
 				8A9939BF2B15129A00DA3022 /* BuildingListView.swift in Sources */,
 				8AC04E862B11329000084EE6 /* Structs.swift in Sources */,
+				8A44B4422B26927000740307 /* DetailsHeaderView.swift in Sources */,
 				8ACF26EF2B222FE1009E1994 /* TestPage.swift in Sources */,
 				8A9939C72B1517C200DA3022 /* Functions.swift in Sources */,
 				8AC04E842B112D5F00084EE6 /* JSONFetch.swift in Sources */,

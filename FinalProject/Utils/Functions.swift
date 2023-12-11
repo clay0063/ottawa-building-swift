@@ -29,3 +29,16 @@ func fixURL(_ urlString: String) -> URL? {
 
     return URL(string: fixedURLString)
 }
+
+func timeFormatter(_ dateString: String) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+    
+    if let date = dateFormatter.date(from: dateString) {
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date)
+    } else {
+        return "Error formatting date"
+    }
+    
+}
