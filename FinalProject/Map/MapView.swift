@@ -17,12 +17,13 @@ struct MapView: View {
     @State private var isSheetPresented = false
     @State private var isFilterSheetPresented = false
     @State private var searchName = ""
-    @State private var selectedCategory = "Placeholder"
     @State private var selectedSortBy = "A-Z"
+    @State private var selectedCategory = "Placeholder"
     let filtering = BuildingFiltering()
     @State private var selectedFeatures: Set<String> = []
     
-    
+   
+        
     private var selectedPlace: Building? {
         if let selectedItem {
             return listData.first(where: { $0.id.hashValue == selectedItem.hashValue })
@@ -31,8 +32,12 @@ struct MapView: View {
     }
     
     var body: some View {
+        var filteredData: [Building] {
+            return filtering.filterData(buildings: listData, selectedFeatures: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy, lm: lm)
+        }
+        
         Map(position: $position, selection: $selectedItem) {
-            ForEach(listData, id: \.buildingId) { building in
+            ForEach(filteredData, id: \.buildingId) { building in
                 Marker(
                     building.name,
                     coordinate: CLLocationCoordinate2D(
@@ -93,7 +98,7 @@ struct MapView: View {
             
         })
         .sheet(isPresented: $isFilterSheetPresented) {
-            FilterSheet(listData: listData, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy, selectedFeatures: $selectedFeatures)
+            FilterSheetMap(listData: listData, selectedCategory: $selectedCategory, selectedFeatures: $selectedFeatures)
         }
         .mapControls(){
             MapCompass()

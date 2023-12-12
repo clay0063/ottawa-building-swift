@@ -19,6 +19,7 @@
 		8A44B4422B26927000740307 /* DetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B4412B26927000740307 /* DetailsHeaderView.swift */; };
 		8A44B4462B26A20300740307 /* DetailsFeaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B4452B26A20300740307 /* DetailsFeaturesView.swift */; };
 		8A44B4482B276FEE00740307 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B4472B276FEE00740307 /* LocationManager.swift */; };
+		8A44B44B2B27DE6600740307 /* FilterSheetMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44B44A2B27DE6600740307 /* FilterSheetMap.swift */; };
 		8A5438C52B1BA29A0056C17C /* BuildingFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */; };
 		8A9133F32B1D19DB00EA2CC4 /* SavedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9133F22B1D19DB00EA2CC4 /* SavedButton.swift */; };
 		8A9939BB2B15082D00DA3022 /* BuildingCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939BA2B15082D00DA3022 /* BuildingCards.swift */; };
@@ -68,6 +69,7 @@
 		8A44B4452B26A20300740307 /* DetailsFeaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsFeaturesView.swift; sourceTree = "<group>"; };
 		8A44B4472B276FEE00740307 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8A44B4492B27703F00740307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8A44B44A2B27DE6600740307 /* FilterSheetMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheetMap.swift; sourceTree = "<group>"; };
 		8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingFiltering.swift; sourceTree = "<group>"; };
 		8A9133F22B1D19DB00EA2CC4 /* SavedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedButton.swift; sourceTree = "<group>"; };
 		8A9939BA2B15082D00DA3022 /* BuildingCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingCards.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				8A9939C02B1512FD00DA3022 /* MapView.swift */,
+				8A44B44A2B27DE6600740307 /* FilterSheetMap.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A44B44B2B27DE6600740307 /* FilterSheetMap.swift in Sources */,
 				8A9939BB2B15082D00DA3022 /* BuildingCards.swift in Sources */,
 				8A44B4402B2687E600740307 /* Categories.swift in Sources */,
 				8A9939C12B1512FD00DA3022 /* MapView.swift in Sources */,
