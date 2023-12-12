@@ -39,7 +39,18 @@ struct BuildingListView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Text("Building List")
+                    HStack(alignment: .center) {
+                        Image("ic_logo_new")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 40)
+                        Text("Building List")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+                            .padding(.leading, 5)
+                    }
+                    
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
@@ -49,14 +60,16 @@ struct BuildingListView: View {
                         Image("filterIcon")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 30)
+                            .frame(height: 20)
                             .padding(10)
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(.white)
                         
                     }
                     
                 }
             }
+            .toolbarBackground(Color.customDarkBlue, for: .navigationBar)
+            .toolbarBackground(.visible)
             .sheet(isPresented: $isFilterSheetPresented) {
                 FilterSheet(listData: listData, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy, selectedFeatures: $selectedFeatures)
             }

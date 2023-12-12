@@ -24,7 +24,24 @@ struct SavedView: View {
                 
             }
             .padding(.horizontal)
-            .navigationTitle("Saved Buildings")
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack(alignment: .center) {
+                        Image("ic_logo_new")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 40)
+                        Text("Saved List")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+                            .padding(.leading, 5)
+                    }
+                    
+                }
+            }
+            .toolbarBackground(Color.customDarkBlue, for: .navigationBar)
+            .toolbarBackground(.visible)
         }
         
         
@@ -38,10 +55,10 @@ struct SavedView: View {
 struct SavedIsEmptyView: View {
     var body: some View {
         VStack(alignment: .center) {
-            Text("Your saved list is empty!")
+            Text("Your saved list is empty.")
                 .font(.title)
                 .fontWeight(.bold)
-            Text("Add some countries to your favorites to see them here.")
+            Text("Press \(Image(systemName: "heart")) to add buildings to this list!")
                 .multilineTextAlignment(.center)
         }
     }

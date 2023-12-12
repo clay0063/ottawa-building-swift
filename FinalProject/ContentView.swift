@@ -24,23 +24,31 @@ struct ContentView: View {
                     Text("Home")
                 }
                 .tag(0)
+//                .toolbarBackground(Color.customDarkBlue, for: .tabBar)
+            
             MapView(listData: listEN, savedList: $savedList, lm: lm)
                 .tabItem {
                     Image(systemName: "map")
                     Text("Map")
                 }
                 .tag(1)
+            
             SavedView(dataList: listEN, savedList: $savedList, lm: lm)
                 .tabItem {
                     Image(systemName: "suit.heart")
                     Text("Saved")
                 }
+                .tag(2)
+            
             MoreView()
                 .tabItem {
                     Image(systemName: "ellipsis")
                     Text("More")
                 }
+                .tag(3)
         }
+        
+        .tint(Color.customDarkBlue)
         
     }
 }
@@ -59,11 +67,3 @@ struct ContentView: View {
 //      -Adding ignore safe area inset
 //  Most likely explanation:
 //      -It's opening with a navlink, so it has the previous navstack padding around it
-
-//Un-faving on Save screen boots back to home
-//  Attempted fixes:
-//      -Going based on list index instead of list item (made things more unstable)
-//  Most likely explanation:
-//      -Editing the list causes the UI to refresh, which sends back to home fsr
-//  Next step:
-//      -Make two lists - a copy of the saved list ???
