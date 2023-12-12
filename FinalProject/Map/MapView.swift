@@ -22,8 +22,8 @@ struct MapView: View {
     let filtering = BuildingFiltering()
     @State private var selectedFeatures: Set<String> = []
     
-   
-        
+    
+    
     private var selectedPlace: Building? {
         if let selectedItem {
             return listData.first(where: { $0.id.hashValue == selectedItem.hashValue })
@@ -38,12 +38,20 @@ struct MapView: View {
         
         Map(position: $position, selection: $selectedItem) {
             ForEach(filteredData, id: \.buildingId) { building in
-                Marker(
+                Annotation(
                     building.name,
                     coordinate: CLLocationCoordinate2D(
                         latitude: building.latitude,
                         longitude: building.longitude)
-                ).tag(building.id)
+                ) {
+                    ZStack {
+                        Image(mapIcon(category: building.category))
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 25)
+                    }
+                }
+                .tag(building.id)
             }
         }
         .safeAreaInset(edge: .top) {
@@ -119,3 +127,31 @@ struct Place: Identifiable {
 }
 
 
+func mapIcon(category: String) -> String {
+    switch category {
+    case "Academic Institutions":
+        return "mapAcademic"
+    case "Business and/or Foundations":
+        return "mapBusiness"
+    case "Community and/or Care centres":
+        return "mapCommunity"
+    case "Embassies":
+        return "mapEmbassy"
+    case "Functional Buildings":
+        return "mapFunctional"
+    case "Galleries and Theatres":
+        return "mapGalleries"
+    case "Government buildings":
+        return "mapGovernment"
+    case "Museums, Archives, and Historic Sites":
+        return "mapMuseum"
+    case "Other":
+        return "mapOther"
+    case "Religious buildings":
+        return "mapCommunity" //no religious icon?
+    case "Sports and Leisure buildings":
+        return "mapSports"
+    default:
+        return "mapOther"
+    }
+}
