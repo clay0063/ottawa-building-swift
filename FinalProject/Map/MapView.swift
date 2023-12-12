@@ -98,6 +98,7 @@ struct MapView: View {
                             HStack {
                                 Text(selectedPlace.address)
                                     .multilineTextAlignment(.leading)
+                                Spacer()
                                 LocationFromYou(data: selectedPlace, lm: lm)
                             }
                             .foregroundStyle(.gray)
