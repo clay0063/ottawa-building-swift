@@ -75,7 +75,7 @@ struct LocationFromYou: View {
                 buildingLong: data.longitude
             )
             
-            Text("\(String(format:"%.2f", distanceFromYou)) km from you")
+            Text("\(String(format:"%.2f", distanceFromYou)) km away")
         }
         
     }

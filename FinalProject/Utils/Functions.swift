@@ -42,3 +42,32 @@ func timeFormatter(_ dateString: String) -> String {
     }
     
 }
+
+func mapIcon(category: String) -> String {
+    switch category {
+    case "Academic Institutions":
+        return "mapAcademic"
+    case "Business and/or Foundations":
+        return "mapBusiness"
+    case "Community and/or Care centres":
+        return "mapCommunity"
+    case "Embassies":
+        return "mapEmbassy"
+    case "Functional Buildings":
+        return "mapFunctional"
+    case "Galleries and Theatres":
+        return "mapGalleries"
+    case "Government buildings":
+        return "mapGovernement"
+    case "Museums, Archives, and Historic Sites":
+        return "mapMuseum"
+    case "Other":
+        return "mapOther"
+    case "Religious buildings":
+        return "mapCommunity" //no religious icon?
+    case "Sports and Leisure buildings":
+        return "mapSports"
+    default:
+        return "mapOther"
+    }
+}

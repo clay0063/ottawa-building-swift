@@ -57,43 +57,63 @@ struct MapView: View {
         .safeAreaInset(edge: .top) {
             HStack {
                 Spacer()
-                HStack {
-                    Button {
-                        isFilterSheetPresented.toggle()
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(width: 45, height: 45)
-                                .foregroundStyle(.white.opacity(0.85))
-                                .shadow(color: .gray.opacity(0.5), radius: 5)
-                            
-                            Image("filterIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20.0)
-                        }
-                        
-                    }
-                    
-                }
-                .padding(.trailing, 5)
+                MapFilterButton(isFilterSheetPresented: $isFilterSheetPresented)
             }
             
         }
         .safeAreaInset(edge: .bottom) {
             if let selectedPlace {
                 //ADD close button
-                VStack {
-                    Text(selectedPlace.name)
-                    Text(selectedPlace.address)
-                    Button("View more") {
-                        isSheetPresented = true
+                VStack(alignment: .leading) {
+                    HStack {
+                        SavedButton(data: selectedPlace, savedList: $savedList).padding(.trailing, 25.0)
+                        if let websiteURL = fixURL(selectedPlace.website) {
+                            ShareLink(Text(""), item: websiteURL).foregroundStyle(Color(red: 0.459, green: 0.459, blue: 0.459))
+                        }
+                        Spacer()
+                        Button {
+                            isSheetPresented = true
+                        } label: {
+                            ZStack {
+                                Text("View More")
+                                    .padding(.vertical, 5)
+                                    .padding(.horizontal, 10)
+                                    .background(
+                                        Capsule()
+                                            .foregroundColor(.white.opacity(0.85))
+                                            .shadow(color: .gray.opacity(0.5), radius: 5)
+                                    )
+                            }
+                            
+                        }
                     }
+                    
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(selectedPlace.name)
+                                .font(.headline)
+                                .fontWeight(.bold)
+                                .multilineTextAlignment(.leading)
+                                .padding(.vertical, 2.0)
+                            HStack {
+                                Text(selectedPlace.address)
+                                    .multilineTextAlignment(.leading)
+                                LocationFromYou(data: selectedPlace, lm: lm)
+                            }
+                            .foregroundStyle(.gray)
+                            
+                            
+                        }
+                    }
+                    
+                    
                 }
+                .padding()
                 .frame(height: 128.0)
                 .frame(maxWidth: .infinity)
-                .padding([.top, .horizontal])
                 .background(.thinMaterial)
+                
+                
             }
         }
         .sheet(isPresented: $isSheetPresented, onDismiss: {isSheetPresented = false}, content: {
@@ -120,38 +140,28 @@ struct MapView: View {
     ContentView()
 }
 
-struct Place: Identifiable {
-    let id: String
-    let name: String
-    let coordinate: CLLocationCoordinate2D
-}
-
-
-func mapIcon(category: String) -> String {
-    switch category {
-    case "Academic Institutions":
-        return "mapAcademic"
-    case "Business and/or Foundations":
-        return "mapBusiness"
-    case "Community and/or Care centres":
-        return "mapCommunity"
-    case "Embassies":
-        return "mapEmbassy"
-    case "Functional Buildings":
-        return "mapFunctional"
-    case "Galleries and Theatres":
-        return "mapGalleries"
-    case "Government buildings":
-        return "mapGovernment"
-    case "Museums, Archives, and Historic Sites":
-        return "mapMuseum"
-    case "Other":
-        return "mapOther"
-    case "Religious buildings":
-        return "mapCommunity" //no religious icon?
-    case "Sports and Leisure buildings":
-        return "mapSports"
-    default:
-        return "mapOther"
+struct MapFilterButton: View {
+    @Binding var isFilterSheetPresented: Bool
+    var body: some View {
+        HStack {
+            Button {
+                isFilterSheetPresented.toggle()
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(width: 45, height: 45)
+                        .foregroundStyle(.white.opacity(0.85))
+                        .shadow(color: .gray.opacity(0.5), radius: 5)
+                    
+                    Image("filterIcon")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20.0)
+                }
+                
+            }
+            
+        }
+        .padding(.trailing, 5)
     }
 }
