@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct BuildingListView: View {
+    
+    
     var listData: [Building]
     @Binding var savedList: [Building]
     var lm: LocationManager
@@ -21,6 +23,7 @@ struct BuildingListView: View {
     var filteredData: [Building] {
         return filtering.filterData(buildings: listData, selectedFeatures: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy, lm: lm)
     }
+    
     
     var body: some View {
         NavigationStack {
@@ -73,8 +76,14 @@ struct BuildingListView: View {
             .sheet(isPresented: $isFilterSheetPresented) {
                 FilterSheet(listData: listData, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy, selectedFeatures: $selectedFeatures)
             }
+            
         }
-        .searchable(text: $searchName, prompt: "Search...")
+        .searchable(
+            text: $searchName,
+            prompt: "Search..."
+        )
+        
+        
         
     }
 }

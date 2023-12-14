@@ -67,3 +67,6 @@ struct ContentView: View {
 //      -Adding ignore safe area inset
 //  Most likely explanation:
 //      -It's opening with a navlink, so it has the previous navstack padding around it
+
+//Searchable I cannot get the color of either the text or background to change
+
