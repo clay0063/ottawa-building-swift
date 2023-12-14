@@ -31,7 +31,7 @@ struct BuildingDetailView: View {
             
         }
         .padding(.vertical, 0)
-        .padding(.horizontal)
+        .padding(.horizontal, 10)
     }
 }
 

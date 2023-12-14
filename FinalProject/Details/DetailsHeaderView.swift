@@ -14,14 +14,15 @@ struct DetailsHeaderView: View {
     let categoryManager = CategoryManager()
     var body: some View {
         let imageURL = data.image.replacingOccurrences(of: ".jpg", with: "")
-        VStack {
+        VStack(alignment: .leading) {
             VStack {
                 Image(imageURL, label: Text("\(data.imageDescription)"))
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: .infinity)
-                    .padding(0)
+                    .frame(maxHeight: 300)
+                
             }
+            
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
@@ -60,17 +61,21 @@ struct DetailsHeaderView: View {
                     
                 }
                 
-                VStack {
-                    Image("newBuilding")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 50)
-                        .rotationEffect(.degrees(-25))
-                        .opacity(data.isNew ? 1 : 0)
-                }.padding(.leading, 20)
-            }.padding(.vertical, 5)
+                if data.isNew {
+                    VStack {
+                        Image("newBuilding")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 50)
+                            .rotationEffect(.degrees(-25))
+                            .opacity(data.isNew ? 1 : 0)
+                    }.padding(.leading, 20)
+                }
+                
+            }
+            .padding(.vertical, 5)
+            .padding(.horizontal)
         }
-        .frame(maxWidth: .infinity)
     }
 }
 

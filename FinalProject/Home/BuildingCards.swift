@@ -20,6 +20,7 @@ struct BuildingCards: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxHeight: 300)
+                    .frame(maxWidth: 500)
             }
             VStack {
                 HStack {

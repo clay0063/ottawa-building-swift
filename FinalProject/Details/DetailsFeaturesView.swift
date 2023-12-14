@@ -20,24 +20,26 @@ struct DetailsFeaturesView: View {
                 
                 if !isFullDetails {
                     // COLLAPSED VIEW
-                    HStack(alignment: .bottom) {
-                        ForEach(filtering.listOfFeatures, id: \.name) { feature in
-                            //reads tuple list, connects to key in building, sees if its true
-                            let (featureName, keyPath) = feature
-                            let isFeatureEnabled = data[keyPath: keyPath]
-                            
-                            
-                            //if its true, it displays it as an icon
-                            if isFeatureEnabled {
+                    ScrollView(.horizontal) {
+                        HStack(alignment: .bottom) {
+                            ForEach(filtering.listOfFeatures, id: \.name) { feature in
+                                //reads tuple list, connects to key in building, sees if its true
+                                let (featureName, keyPath) = feature
+                                let isFeatureEnabled = data[keyPath: keyPath]
                                 
-                                GridRow{
-                                    filtering.featureIcons[featureName]?
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 35, height: 35)
+                                
+                                //if its true, it displays it as an icon
+                                if isFeatureEnabled {
+                                    
+                                    GridRow{
+                                        filtering.featureIcons[featureName]?
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 35, height: 35)
+                                        
+                                    }
                                     
                                 }
-                                
                             }
                         }
                     }
