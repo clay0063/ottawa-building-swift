@@ -15,18 +15,39 @@ struct About: View {
     
     var body: some View {
         NavigationStack {
-            Image(systemName: "person")
-            VStack {
+            Image("selfie_image")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .border(Color.black, width: 4)
+                .padding(.bottom)
+            
+            VStack(alignment: .leading) {
                 Text("Teagan Clayton")
+                    .fontWeight(.bold)
+                
                 Text("Junior Developer")
+                    .padding(.bottom)
+                
+                Divider()
             }
-            VStack {
-                Text("clay0063@algonquinlive.com")
+            .font(.title3)
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    Image(systemName: "envelope")
+                    Text("clay0063@algonquinlive.com")
+                }
+                HStack {
+                    Image(systemName: "ellipsis.curlybraces")
+                    NavigationLink("Github", destination: SafariViewWrap(url: fixURL("http://github.com/clay0063")!)).ignoresSafeArea()
+                    Spacer()
+                }
+                .padding(.top, 5)
             }
-            VStack {
-                NavigationLink("Visit Website", destination: SafariViewWrap(url: fixURL("http://github.com/clay0063")!)).ignoresSafeArea()
-            }
+            .padding(.vertical)
+            Divider()
         }
+        .padding()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {

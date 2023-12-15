@@ -21,6 +21,20 @@ class BuildingViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     @Published var isLoading = false
     
+    let categoriesListEN = [
+        "Academic Institutions",
+        "Business and/or Foundations",
+        "Community and/or Care centres",
+        "Embassies",
+        "Functional Buildings",
+        "Galleries and Theatres",
+        "Government buildings",
+        "Museums, Archives, and Historic Sites",
+        "Other",
+        "Religious buildings",
+        "Sports and Leisure buildings"
+    ]
+    
     init() {
         loadData()
     }

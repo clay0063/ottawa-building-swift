@@ -30,20 +30,6 @@ struct FormBuildingSubmission: View {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    let categoriesList = [
-        "Academic Institutions",
-        "Business and/or Foundations",
-        "Community and/or Care centres",
-        "Embassies",
-        "Functional Buildings",
-        "Galleries and Theatres",
-        "Government buildings",
-        "Museums, Archives, and Historic Sites",
-        "Other",
-        "Religious buildings",
-        "Sports and Leisure buildings"
-    ]
-    
     var body: some View {
         //CHECK INTERNET CONNECTION
         NavigationStack {
@@ -63,7 +49,7 @@ struct FormBuildingSubmission: View {
                 
                 Section {
                     Picker("Building Category:", selection: $submission.category) {
-                        ForEach(categoriesList, id: \.self) { option in
+                        ForEach(vm.categoriesListEN, id: \.self) { option in
                             Text(option)
                         }
                     }
