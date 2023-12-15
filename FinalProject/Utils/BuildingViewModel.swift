@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import Combine
 
 class BuildingViewModel: ObservableObject {
     
@@ -17,16 +18,18 @@ class BuildingViewModel: ObservableObject {
     private let submissionRef = Firestore.firestore().collection("Buildings")
     
     @Published var currentLanguage = "en"
-    
+    private var cancellables: Set<AnyCancellable> = []
+    @Published var isLoading = false
     
     init() {
         loadData()
-        updateCurrentList()
     }
     
     func loadData() {
+        isLoading = true
         guard let url = Bundle.main.url(forResource: "buildings", withExtension: "json") else {
             print("Json file not found")
+            isLoading = false
             return
         }
         
@@ -46,6 +49,7 @@ class BuildingViewModel: ObservableObject {
                     break
                 }
             }
+            updateCurrentList()
         } catch {
             print("Error loading data: \(error)")
         }
@@ -91,9 +95,11 @@ class BuildingViewModel: ObservableObject {
         default:
             break
         }
+        isLoading = false
     }
     
     func toggleLanguage() {
+        isLoading = true
         updateCurrentList()
     }
     

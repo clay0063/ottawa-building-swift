@@ -136,10 +136,6 @@ struct MapView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
-
 struct MapFilterButton: View {
     @Binding var isFilterSheetPresented: Bool
     var body: some View {

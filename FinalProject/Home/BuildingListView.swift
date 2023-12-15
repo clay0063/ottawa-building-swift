@@ -88,7 +88,7 @@ struct BuildingListView: View {
 
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(BuildingViewModel())
 }
 
 

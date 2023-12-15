@@ -14,44 +14,47 @@ struct ContentView: View {
     @State private var selectedTab = 0
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            BuildingListView(lm: lm)
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-                .tag(0)
-//                .toolbarBackground(Color.customDarkBlue, for: .tabBar)
+        if vm.isLoading {
+            ProgressView()
+        } else {
+            TabView(selection: $selectedTab) {
+                BuildingListView(lm: lm)
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("Home")
+                    }
+                    .tag(0)
+                //                .toolbarBackground(Color.customDarkBlue, for: .tabBar)
+                
+                MapView(lm: lm)
+                    .tabItem {
+                        Image(systemName: "map")
+                        Text("Map")
+                    }
+                    .tag(1)
+                
+                SavedView(lm: lm)
+                    .tabItem {
+                        Image(systemName: "suit.heart")
+                        Text("Saved")
+                    }
+                    .tag(2)
+                
+                MoreView()
+                    .tabItem {
+                        Image(systemName: "ellipsis")
+                        Text("More")
+                    }
+                    .tag(3)
+            }
             
-            MapView(lm: lm)
-                .tabItem {
-                    Image(systemName: "map")
-                    Text("Map")
-                }
-                .tag(1)
-            
-            SavedView(lm: lm)
-                .tabItem {
-                    Image(systemName: "suit.heart")
-                    Text("Saved")
-                }
-                .tag(2)
-            
-            MoreView()
-                .tabItem {
-                    Image(systemName: "ellipsis")
-                    Text("More")
-                }
-                .tag(3)
+            .tint(Color.customDarkBlue)
         }
-        
-        .tint(Color.customDarkBlue)
-        
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(BuildingViewModel())
 }
 
 
@@ -66,5 +69,3 @@ struct ContentView: View {
 //      -It's opening with a navlink, so it has the previous navstack padding around it
 
 //Searchable I cannot get the color of either the text or background to change
-//Sometimes the save hearts when pressed will not switch to being "filled". They still get added to saved though
-
