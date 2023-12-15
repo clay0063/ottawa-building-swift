@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import Firebase
 
 class BuildingViewModel: ObservableObject {
+    
     @Published var buildingDataEN = [Building]()
     @Published var buildingDataFR = [Building]()
     @Published var savedList = [Building]()
+    
     
     init() {
         loadData()

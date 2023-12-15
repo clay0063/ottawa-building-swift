@@ -9,13 +9,12 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @EnvironmentObject var viewModel: BuildingViewModel
+    @EnvironmentObject var vm: BuildingViewModel
     @ObservedObject var lm = LocationManager()
-    @StateObject var jsonFetch = JSONFetch()
     @State private var selectedTab = 0
     
     var body: some View {
-        let listEN = jsonFetch.buildingDataEN
+        let listEN = vm.buildingDataEN
         //        let listFR = jsonFetch.buildingDataFR
         TabView(selection: $selectedTab) {
             BuildingListView(listData: listEN, lm: lm)

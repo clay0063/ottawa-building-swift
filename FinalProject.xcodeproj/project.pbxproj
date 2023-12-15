@@ -40,7 +40,6 @@
 		8A9939C52B15131200DA3022 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939C42B15131200DA3022 /* MoreView.swift */; };
 		8A9939C72B1517C200DA3022 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9939C62B1517C200DA3022 /* Functions.swift */; };
 		8AC04E812B112CB400084EE6 /* buildings.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AC04E802B112CB400084EE6 /* buildings.json */; };
-		8AC04E842B112D5F00084EE6 /* JSONFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC04E832B112D5F00084EE6 /* JSONFetch.swift */; };
 		8AC04E862B11329000084EE6 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC04E852B11329000084EE6 /* Structs.swift */; };
 		8ACF26EF2B222FE1009E1994 /* TestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACF26EE2B222FE1009E1994 /* TestPage.swift */; };
 /* End PBXBuildFile section */
@@ -94,7 +93,6 @@
 		8A9939C42B15131200DA3022 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		8A9939C62B1517C200DA3022 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		8AC04E802B112CB400084EE6 /* buildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buildings.json; sourceTree = "<group>"; };
-		8AC04E832B112D5F00084EE6 /* JSONFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFetch.swift; sourceTree = "<group>"; };
 		8AC04E852B11329000084EE6 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		8ACF26EE2B222FE1009E1994 /* TestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				8AC04E802B112CB400084EE6 /* buildings.json */,
-				8AC04E832B112D5F00084EE6 /* JSONFetch.swift */,
 				8AC04E852B11329000084EE6 /* Structs.swift */,
 				8A9939C62B1517C200DA3022 /* Functions.swift */,
 				8A5438C42B1BA29A0056C17C /* BuildingFiltering.swift */,
@@ -414,7 +411,6 @@
 				8A69351A2B2BA9E30033C5F0 /* SubmitBuilding.swift in Sources */,
 				8ACF26EF2B222FE1009E1994 /* TestPage.swift in Sources */,
 				8A9939C72B1517C200DA3022 /* Functions.swift in Sources */,
-				8AC04E842B112D5F00084EE6 /* JSONFetch.swift in Sources */,
 				8A9133F32B1D19DB00EA2CC4 /* SavedButton.swift in Sources */,
 				8A44B43E2B26532C00740307 /* FilterSheet.swift in Sources */,
 				8A9939C32B15130800DA3022 /* SavedView.swift in Sources */,
