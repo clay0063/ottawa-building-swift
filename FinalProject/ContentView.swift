@@ -9,16 +9,16 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @EnvironmentObject var viewModel: BuildingViewModel
     @ObservedObject var lm = LocationManager()
     @StateObject var jsonFetch = JSONFetch()
-    @State private var savedList = [Building]()
     @State private var selectedTab = 0
     
     var body: some View {
         let listEN = jsonFetch.buildingDataEN
         //        let listFR = jsonFetch.buildingDataFR
         TabView(selection: $selectedTab) {
-            BuildingListView(listData: listEN, savedList: $savedList, lm: lm)
+            BuildingListView(listData: listEN, lm: lm)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -26,14 +26,14 @@ struct ContentView: View {
                 .tag(0)
 //                .toolbarBackground(Color.customDarkBlue, for: .tabBar)
             
-            MapView(listData: listEN, savedList: $savedList, lm: lm)
+            MapView(listData: listEN, lm: lm)
                 .tabItem {
                     Image(systemName: "map")
                     Text("Map")
                 }
                 .tag(1)
             
-            SavedView(dataList: listEN, savedList: $savedList, lm: lm)
+            SavedView(dataList: listEN, lm: lm)
                 .tabItem {
                     Image(systemName: "suit.heart")
                     Text("Saved")

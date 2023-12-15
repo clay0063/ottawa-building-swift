@@ -9,28 +9,14 @@ import SwiftUI
 
 struct SavedButton: View {
     var data: Building
-    @Binding var savedList: [Building]
+    @EnvironmentObject var vm: BuildingViewModel
     var body: some View {
         Button {
             withAnimation {
-                if !savedList.contains(where: { fav in
-                    // check if favorites contain this country
-                    fav.buildingId == data.buildingId
-                }) {
-                    // adds it to fav array if not
-                    savedList.append(data)
-                } else {
-                    if let index = savedList.firstIndex(where: { fav in
-                        // checks if & WHERE country is in favs
-                        fav.buildingId == data.buildingId
-                    }) {
-                        // removes it from favs
-                        savedList.remove(at: index)
-                    }
-                }
+                vm.toggleSavedStatus(for: data)
             }
         } label: {
-            Image(savedList.contains(where: { fav in
+            Image(vm.savedList.contains(where: { fav in
                 fav.buildingId == data.buildingId
             }) ? "favoriteGreyFilledIcon" : "favouriteOutlineGray")
             .resizable()

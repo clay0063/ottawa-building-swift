@@ -10,7 +10,7 @@ import MapKit
 
 struct MapView: View {
     var listData: [Building]
-    @Binding var savedList: [Building]
+    @EnvironmentObject var vm: BuildingViewModel
     var lm: LocationManager
     @State private var position: MapCameraPosition = .automatic
     @State private var selectedItem: Int?
@@ -66,7 +66,7 @@ struct MapView: View {
                 //ADD close button
                 VStack(alignment: .leading) {
                     HStack {
-                        SavedButton(data: selectedPlace, savedList: $savedList).padding(.trailing, 25.0)
+                        SavedButton(data: selectedPlace).padding(.trailing, 25.0)
                         if let websiteURL = fixURL(selectedPlace.website) {
                             ShareLink(Text(""), item: websiteURL).foregroundStyle(Color(red: 0.459, green: 0.459, blue: 0.459))
                         }
@@ -119,7 +119,7 @@ struct MapView: View {
         }
         .sheet(isPresented: $isSheetPresented, onDismiss: {isSheetPresented = false}, content: {
             if let selectedPlace {
-                BuildingDetailView(data: selectedPlace, savedList: $savedList, dataList: listData)
+                BuildingDetailView(data: selectedPlace, dataList: listData)
                 //                    .presentationBackground(.thinMaterial)
                     .presentationDetents([.large])
                     .presentationCornerRadius(25)

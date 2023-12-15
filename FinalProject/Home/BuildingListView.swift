@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct BuildingListView: View {
-    
-    
     var listData: [Building]
-    @Binding var savedList: [Building]
     var lm: LocationManager
+    @EnvironmentObject var vm: BuildingViewModel
     @State private var searchName = ""
     @State private var selectedCategory = "Placeholder"
     @State private var selectedSortBy = "A-Z"
@@ -33,9 +31,9 @@ struct BuildingListView: View {
                         return searchName.isEmpty || building.name.lowercased().contains(searchName.lowercased())
                     }) { building in
                         NavigationLink(
-                            destination: BuildingDetailView(data: building, savedList: $savedList, dataList: listData)
+                            destination: BuildingDetailView(data: building, dataList: listData)
                         ) {
-                            BuildingCards(data: building, savedList: $savedList, lm: lm)
+                            BuildingCards(data: building, lm: lm)
                         }
                     }
                 }

@@ -10,13 +10,12 @@ import SwiftUI
 
 struct BuildingDetailView: View {
     let data: Building
-    @Binding var savedList: [Building]
     let dataList: [Building]
     
     var body: some View {
         
         ScrollView {
-            DetailsHeaderView(data: data, savedList: $savedList)
+            DetailsHeaderView(data: data)
             Divider()
             
             DetailsHoursView(data: data)

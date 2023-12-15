@@ -10,7 +10,6 @@ import SafariServices
 
 struct DetailsHeaderView: View {
     var data: Building
-    @Binding var savedList: [Building]
     let categoryManager = CategoryManager()
     var body: some View {
         let imageURL = data.image.replacingOccurrences(of: ".jpg", with: "")
@@ -27,7 +26,7 @@ struct DetailsHeaderView: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     HStack {
-                        SavedButton(data: data, savedList: $savedList).padding(.trailing, 25.0)
+                        SavedButton(data: data).padding(.trailing, 25.0)
                         if let websiteURL = fixURL(data.website) {
                             ShareLink(Text(""), item: websiteURL)
                                 .foregroundStyle(Color(red: 0.459, green: 0.459, blue: 0.459))

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct BuildingCards: View {
     let data: Building
-    @Binding var savedList: [Building]
     var lm: LocationManager
     
     var body: some View {
@@ -24,7 +23,7 @@ struct BuildingCards: View {
             }
             VStack {
                 HStack {
-                    SavedButton(data: data, savedList: $savedList).padding(.trailing, 25.0)
+                    SavedButton(data: data).padding(.trailing, 25.0)
                     if let websiteURL = fixURL(data.website) {
                         ShareLink(Text(""), item: websiteURL).foregroundStyle(Color(red: 0.459, green: 0.459, blue: 0.459))
                     }

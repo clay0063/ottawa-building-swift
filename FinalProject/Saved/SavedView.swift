@@ -9,16 +9,16 @@ import SwiftUI
 
 struct SavedView: View {
     var dataList: [Building]
-    @Binding var savedList: [Building]
+    @EnvironmentObject var vm: BuildingViewModel
     var lm: LocationManager
     
     var body: some View {
         NavigationStack {
             VStack{
-                if savedList.isEmpty {
+                if vm.savedList.isEmpty {
                     SavedIsEmptyView()
                 } else {
-                    SavedListView(dataList: dataList, savedList: $savedList, lm: lm)
+                    SavedListView(dataList: dataList, lm: lm)
                         
                 }
                 
@@ -66,19 +66,19 @@ struct SavedIsEmptyView: View {
 
 struct SavedListView: View {
     var dataList: [Building]
-    @Binding var savedList: [Building]
+    @EnvironmentObject var vm: BuildingViewModel
     var lm: LocationManager
     @State private var searchName = ""
     
     var body: some View {
         ScrollView {
-            ForEach(savedList.filter {
+            ForEach(vm.savedList.filter {
                 searchName.isEmpty || $0.name.lowercased().contains(searchName.lowercased())
             }, id: \.id) { building in
                 NavigationLink(
-                    destination: BuildingDetailView(data: building, savedList: $savedList, dataList: dataList)
+                    destination: BuildingDetailView(data: building, dataList: dataList)
                 ) {
-                    BuildingCards(data: building, savedList: $savedList, lm: lm)
+                    BuildingCards(data: building, lm: lm)
                 }
                 .padding(.bottom, 20.0)
             }
