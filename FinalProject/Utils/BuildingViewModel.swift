@@ -7,7 +7,7 @@
 
 import Foundation
 import Firebase
-import Combine
+import Network
 
 class BuildingViewModel: ObservableObject {
     
@@ -18,8 +18,10 @@ class BuildingViewModel: ObservableObject {
     private let submissionRef = Firestore.firestore().collection("Buildings")
     
     @Published var currentLanguage = "en"
-    private var cancellables: Set<AnyCancellable> = []
     @Published var isLoading = false
+    
+    let networkMonitor = NWPathMonitor()
+    @Published var isConnected = true
     
     let categoriesListEN = [
         "Academic Institutions",
@@ -51,6 +53,7 @@ class BuildingViewModel: ObservableObject {
     
     init() {
         loadData()
+        checkInternetConnection()
     }
     
     func loadData() {
@@ -87,10 +90,8 @@ class BuildingViewModel: ObservableObject {
         if let index = savedList.firstIndex(where: { fav in
             fav.buildingId == building.buildingId
         }) {
-            // Building is already in the saved list, remove it
             savedList.remove(at: index)
         } else {
-            // Building is not in the saved list, add it
             savedList.append(building)
         }
         
@@ -132,4 +133,12 @@ class BuildingViewModel: ObservableObject {
         updateCurrentList()
     }
     
+    //function to check internet connection
+    //based on this https://www.danijelavrzan.com/posts/2022/11/network-connection-alert-swiftui/
+    func checkInternetConnection() {
+        networkMonitor.pathUpdateHandler = { path in
+            self.isConnected = path.status == .satisfied
+                }
+        networkMonitor.start(queue: DispatchQueue(label: "Monitor"))
+    }
 }

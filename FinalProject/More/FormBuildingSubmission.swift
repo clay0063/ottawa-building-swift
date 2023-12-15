@@ -10,12 +10,12 @@ import Firebase
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
-    return true
-  }
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        
+        return true
+    }
 }
 
 
@@ -23,14 +23,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //https://stackoverflow.com/questions/56571349/custom-back-button-for-navigationviews-navigation-bar-in-swiftui
 
 struct FormBuildingSubmission: View {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var vm: BuildingViewModel
     @State var submission: Submission = Submission()
     var categories: [String] {
         return if vm.currentLanguage == "en" { vm.categoriesListEN } else { vm.categoriesListFR }
     }
+    @State var showAlert = false
     
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     
     var body: some View {
         //CHECK INTERNET CONNECTION
@@ -62,18 +64,18 @@ struct FormBuildingSubmission: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
-                        }, label: {
+                    }, label: {
                         Text("Back")
                             .foregroundStyle(.white)
                     })
-                        
+                    
                 }
                 ToolbarItem(placement: .principal) {
-                        Text("Suggestions")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.white)
-                            .padding(5)
+                    Text("Suggestions")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.white)
+                        .padding(5)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
@@ -89,6 +91,19 @@ struct FormBuildingSubmission: View {
             .toolbarBackground(Color.customDarkBlue, for: .navigationBar)
             .toolbarBackground(.visible)
             .navigationBarBackButtonHidden(true)
+        }
+        .onAppear {
+            vm.checkInternetConnection()
+            showAlert = !vm.isConnected
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Internet connection"),
+                message: Text("Please check your internet connection and try again."),
+                dismissButton: .default(Text("OK"), action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                })
+            )
         }
         
     }
