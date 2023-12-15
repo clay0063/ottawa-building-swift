@@ -29,6 +29,7 @@ struct BuildingDetailView: View {
             //                DetailsMapView(data: data)
             
         }
+        .navigationBarTitleDisplayMode(.inline)
         .padding(.vertical, 0)
         .padding(.horizontal, 10)
     }
