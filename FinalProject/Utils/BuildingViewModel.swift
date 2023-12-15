@@ -100,6 +100,7 @@ class BuildingViewModel: ObservableObject {
     
     func toggleLanguage() {
         isLoading = true
+        if currentLanguage == "en" { currentLanguage = "fr" } else { currentLanguage = "en" }
         updateCurrentList()
     }
     

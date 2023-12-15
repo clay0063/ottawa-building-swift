@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct MoreView: View {
+    @EnvironmentObject var vm: BuildingViewModel
     var body: some View {
         NavigationStack {
             VStack {
-                Text("Language")
-                //If French, change the content of the app to the french, the data of the french is provided in the json file
+                Button("Toggle Language") {
+                    vm.toggleLanguage()
+                }
                 //Will have to fix category sorting for French
                 NavigationLink(destination: FormBuildingSubmission(), label: {
                     Text("Recommend a Building")
@@ -44,5 +46,5 @@ struct MoreView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(BuildingViewModel())
 }

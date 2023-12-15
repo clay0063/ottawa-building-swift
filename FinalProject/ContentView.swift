@@ -24,7 +24,6 @@ struct ContentView: View {
                         Text("Home")
                     }
                     .tag(0)
-                //                .toolbarBackground(Color.customDarkBlue, for: .tabBar)
                 
                 MapView(lm: lm)
                     .tabItem {
