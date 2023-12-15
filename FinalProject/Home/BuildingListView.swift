@@ -73,6 +73,11 @@ struct BuildingListView: View {
             .sheet(isPresented: $isFilterSheetPresented) {
                 FilterSheet(selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy, selectedFeatures: $selectedFeatures)
             }
+            .onAppear {
+                selectedCategory = "Placeholder"
+                selectedFeatures = []
+                //prevents issues when switching languages while something is selected
+            }
             
         }
         .searchable(
