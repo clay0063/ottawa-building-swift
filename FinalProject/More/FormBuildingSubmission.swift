@@ -26,7 +26,9 @@ struct FormBuildingSubmission: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var vm: BuildingViewModel
     @State var submission: Submission = Submission()
-    
+    var categories: [String] {
+        return if vm.currentLanguage == "en" { vm.categoriesListEN } else { vm.categoriesListFR }
+    }
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
@@ -49,7 +51,7 @@ struct FormBuildingSubmission: View {
                 
                 Section {
                     Picker("Building Category:", selection: $submission.category) {
-                        ForEach(vm.categoriesListEN, id: \.self) { option in
+                        ForEach(categories, id: \.self) { option in
                             Text(option)
                         }
                     }

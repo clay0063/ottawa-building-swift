@@ -35,6 +35,20 @@ class BuildingViewModel: ObservableObject {
         "Sports and Leisure buildings"
     ]
     
+    let categoriesListFR = [
+        "Ambassades",
+        "Autres",
+        "Centres communautaires/de soins",
+        "Entreprises/Fondations",
+        "Galeries et théâtres",
+        "Musées, archives et lieux historiques",
+        "Édifices de sports et loisirs",
+        "Édifices gouvernementaux",
+        "Édifices religieux",
+        "Édifices techniques",
+        "Édifices d’enseignement"
+    ]
+    
     init() {
         loadData()
     }

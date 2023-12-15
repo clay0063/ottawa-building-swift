@@ -51,7 +51,7 @@ class BuildingFiltering {
         }
         
         //FILTER CATEGORY
-        if selectedCategory != "All Categories" && selectedCategory != "Placeholder" {
+        if selectedCategory != "All Categories" && selectedCategory != "Toutes les catégories" && selectedCategory != "Placeholder" {
             filteredList = filteredList.filter { building in
                 building.category == selectedCategory }
         }
@@ -65,8 +65,8 @@ class BuildingFiltering {
             return filteredList.sorted(by: {$0.name.lowercased() > $1.name.lowercased()})
         case "Distance":
             guard lm.hasPermission else {
-                    return filteredList
-                }
+                return filteredList
+            }
             
             let distanceSort = filteredList.sorted(by: {
                 let userLat = (lm.userLocation != nil) ? lm.userLocation!.coordinate.latitude : 0

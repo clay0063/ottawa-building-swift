@@ -38,7 +38,7 @@ struct BuildingDetailView: View {
 
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(BuildingViewModel())
 }
 
 

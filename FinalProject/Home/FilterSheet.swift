@@ -12,11 +12,13 @@ struct FilterSheet: View {
     @Binding var selectedCategory: String
     @Binding var selectedSortBy: String
     @Binding var selectedFeatures: Set<String>
-    
+    var allCategory: String {
+        return if vm.currentLanguage == "en" { "All Categories" } else { "Toutes les catégories" }
+    }
     
     var sortCategories: [String] {
         let categories = Set(vm.displayList.map {$0.category})
-        return ["All Categories"] + Array(categories).sorted()
+        return [allCategory] + Array(categories).sorted()
     }
     let sortOptions = ["A-Z", "Z-A", "Distance"]
     
