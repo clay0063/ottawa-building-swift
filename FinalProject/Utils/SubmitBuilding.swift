@@ -10,7 +10,6 @@ import Firebase
 
 
 class SubmissionModel: ObservableObject {
-    @Published var submissions: [Submission] = []
     private let submissionRef = Firestore.firestore().collection("Buildings")
         
     func submitBuilding(building: Submission){
@@ -27,11 +26,6 @@ class SubmissionModel: ObservableObject {
             error in
             if let error = error {
                 print(error.localizedDescription)
-            }
-            else {
-                if !self.submissions.contains(where: { $0.id == building.id }) {
-                    self.submissions.append(building)
-                }
             }
         }
     }

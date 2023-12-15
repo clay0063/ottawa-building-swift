@@ -13,6 +13,7 @@ class BuildingViewModel: ObservableObject {
     @Published var buildingDataEN = [Building]()
     @Published var buildingDataFR = [Building]()
     @Published var savedList = [Building]()
+    private let submissionRef = Firestore.firestore().collection("Buildings")
     
     
     init() {
@@ -57,6 +58,24 @@ class BuildingViewModel: ObservableObject {
             savedList.append(building)
         }
         
+    }
+    
+    func submitBuilding(building: Submission){
+        let ref = submissionRef.document(building.id)
+        
+        ref.setData(
+            [
+                "id": building.id,
+                "name": building.name,
+                "category": building.category,
+                "description": building.description
+            ]
+        ) {
+            error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
     
 }

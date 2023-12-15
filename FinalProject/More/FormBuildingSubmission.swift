@@ -24,7 +24,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 struct FormBuildingSubmission: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State var model: SubmissionModel = SubmissionModel()
+    @EnvironmentObject var vm: BuildingViewModel
     @State private var buildingName = ""
     @State private var buildingCategory = "Other"
     @State private var buildingDescription = "Enter a description here..."
@@ -98,7 +98,7 @@ struct FormBuildingSubmission: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        model.submitBuilding(building: submission)
+                        vm.submitBuilding(building: submission)
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("Submit")
