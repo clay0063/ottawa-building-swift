@@ -9,19 +9,33 @@ import SwiftUI
 
 struct MoreView: View {
     @EnvironmentObject var vm: BuildingViewModel
+    @Environment(\.dismiss) var dismissMe
     var body: some View {
         NavigationStack {
             VStack {
-                Button("Toggle Language") {
-                    vm.toggleLanguage()
+                List {
+                    Button(action: {
+                        vm.toggleLanguage()
+                    }, label: {
+                        if vm.currentLanguage == "en"
+                        {
+                            Text("Changer la langue au français")
+                        } else {
+                            Text("Change language to English")
+                        }
+                    })
+                    .padding(.vertical)
+                    
+                    NavigationLink(destination: FormBuildingSubmission(), label: {
+                        Text("Recommend a Building")
+                    })
+                    .padding(.vertical)
+                    
+                    Text("About portfolio")
+                    .padding(.vertical)
+                    
                 }
-                //Will have to fix category sorting for French
-                NavigationLink(destination: FormBuildingSubmission(), label: {
-                    Text("Recommend a Building")
-                })
-                //Name of the building, Category, Description
-                Text("About portfolio")
-                //Image of yourself & Email
+                
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

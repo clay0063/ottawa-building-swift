@@ -25,11 +25,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct FormBuildingSubmission: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var vm: BuildingViewModel
-    @State private var buildingName = ""
-    @State private var buildingCategory = "Other"
-    @State private var buildingDescription = "Enter a description here..."
-    @State private var placeholderColor = Color(.gray)
-    @State private var isPlaceholder = true
     @State var submission: Submission = Submission()
     
     
@@ -54,24 +49,20 @@ struct FormBuildingSubmission: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("Building Name", text: $submission.name)
+                    Text("Building name:")
+                    TextField("", text: $submission.name)
                         .font(.headline)
                         .frame(minHeight: 30)
                 }
                 
                 Section {
+                    Text("Building description:")
                     TextEditor(text: $submission.description)
                         .frame(minHeight: 100)
-                        .foregroundStyle(placeholderColor)
-                        .onTapGesture {
-                            if isPlaceholder {
-                                buildingDescription = ""
-                                placeholderColor = Color(.black)
-                                isPlaceholder = false
-                            }
-                        }
-                    
-                    Picker("Categories", selection: $submission.category) {
+                }
+                
+                Section {
+                    Picker("Building Category:", selection: $submission.category) {
                         ForEach(categoriesList, id: \.self) { option in
                             Text(option)
                         }
@@ -116,6 +107,5 @@ struct FormBuildingSubmission: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(BuildingViewModel())
 }
-
