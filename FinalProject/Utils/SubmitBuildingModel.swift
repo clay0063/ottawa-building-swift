@@ -6,3 +6,7 @@
 //
 
 import Foundation
+import Firebase
+
+private let buildingSubmissionRef = Firestore.firestore().collection("Buildings")
+

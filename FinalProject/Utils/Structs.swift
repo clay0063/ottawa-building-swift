@@ -78,3 +78,26 @@ struct Building: Decodable, Identifiable {
     let isOpenSunday: Bool
     
 }
+
+struct Submission: Identifiable {
+    let id: String
+    var name: String
+    var category: String
+    var description: String
+    
+    init(
+        id: String = UUID().uuidString,
+        name: String,
+        category: String,
+        description: String
+    ) {
+        self.id = id
+        self.name = name
+        self.category = category
+        self.description = description
+    }
+    
+    public init() {
+        self.init(name: "", category: "", description: "")
+    }
+}

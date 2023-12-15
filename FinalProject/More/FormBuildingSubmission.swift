@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FirebaseCore
+import Firebase
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -24,11 +24,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 struct FormBuildingSubmission: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var model: SubmissionModel = SubmissionModel()
     @State private var buildingName = ""
     @State private var buildingCategory = "Other"
     @State private var buildingDescription = "Enter a description here..."
     @State private var placeholderColor = Color(.gray)
     @State private var isPlaceholder = true
+    @State var submission: Submission = Submission()
+    
     
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
@@ -50,26 +53,31 @@ struct FormBuildingSubmission: View {
         //CHECK INTERNET CONNECTION
         NavigationStack {
             Form {
-                TextField("Building Name", text: $buildingName)
-                  .font(.headline)
-                  .frame(minHeight: 30)
+                Section {
+                    TextField("Building Name", text: $submission.name)
+                        .font(.headline)
+                        .frame(minHeight: 30)
+                }
                 
-                TextEditor( text: $buildingDescription)
-                    .frame(minHeight: 100)
-                    .foregroundStyle(placeholderColor)
-                    .onTapGesture {
-                        if isPlaceholder {
-                            buildingDescription = ""
-                            placeholderColor = Color(.black)
-                            isPlaceholder = false
+                Section {
+                    TextEditor(text: $submission.description)
+                        .frame(minHeight: 100)
+                        .foregroundStyle(placeholderColor)
+                        .onTapGesture {
+                            if isPlaceholder {
+                                buildingDescription = ""
+                                placeholderColor = Color(.black)
+                                isPlaceholder = false
+                            }
+                        }
+                    
+                    Picker("Categories", selection: $submission.category) {
+                        ForEach(categoriesList, id: \.self) { option in
+                            Text(option)
                         }
                     }
-                Picker("Categories", selection: $buildingCategory) {
-                    ForEach(categoriesList, id: \.self) { option in
-                        Text(option)
-                    }
+                    .pickerStyle(InlinePickerStyle())
                 }
-                .pickerStyle(InlinePickerStyle())
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -82,15 +90,21 @@ struct FormBuildingSubmission: View {
                         
                 }
                 ToolbarItem(placement: .principal) {
-                        Text("Submit a Building")
+                        Text("Suggestions")
                             .font(.title3)
                             .fontWeight(.bold)
                             .foregroundStyle(.white)
                             .padding(5)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Text("Submit")
-                        .foregroundStyle(.white)
+                    Button(action: {
+                        model.submitBuilding(building: submission)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text("Submit")
+                            .foregroundStyle(.white)
+                    })
+                    
                 }
             }
             .toolbarBackground(Color.customDarkBlue, for: .navigationBar)

@@ -69,4 +69,5 @@ struct ContentView: View {
 //      -It's opening with a navlink, so it has the previous navstack padding around it
 
 //Searchable I cannot get the color of either the text or background to change
+//Sometimes the save hearts when pressed will not switch to being "filled". They still get added to saved though
 
