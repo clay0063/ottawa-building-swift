@@ -14,10 +14,8 @@ struct ContentView: View {
     @State private var selectedTab = 0
     
     var body: some View {
-        let listEN = vm.buildingDataEN
-        //        let listFR = jsonFetch.buildingDataFR
         TabView(selection: $selectedTab) {
-            BuildingListView(listData: listEN, lm: lm)
+            BuildingListView(lm: lm)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -25,14 +23,14 @@ struct ContentView: View {
                 .tag(0)
 //                .toolbarBackground(Color.customDarkBlue, for: .tabBar)
             
-            MapView(listData: listEN, lm: lm)
+            MapView(lm: lm)
                 .tabItem {
                     Image(systemName: "map")
                     Text("Map")
                 }
                 .tag(1)
             
-            SavedView(dataList: listEN, lm: lm)
+            SavedView(lm: lm)
                 .tabItem {
                     Image(systemName: "suit.heart")
                     Text("Saved")

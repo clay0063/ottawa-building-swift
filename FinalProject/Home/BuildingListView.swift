@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BuildingListView: View {
-    var listData: [Building]
     var lm: LocationManager
     @EnvironmentObject var vm: BuildingViewModel
     @State private var searchName = ""
@@ -19,7 +18,7 @@ struct BuildingListView: View {
     @State private var isFilterSheetPresented = false
     
     var filteredData: [Building] {
-        return filtering.filterData(buildings: listData, selectedFeatures: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy, lm: lm)
+        return filtering.filterData(buildings: vm.displayList, selectedFeatures: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy, lm: lm)
     }
     
     
@@ -31,7 +30,7 @@ struct BuildingListView: View {
                         return searchName.isEmpty || building.name.lowercased().contains(searchName.lowercased())
                     }) { building in
                         NavigationLink(
-                            destination: BuildingDetailView(data: building, dataList: listData)
+                            destination: BuildingDetailView(data: building)
                         ) {
                             BuildingCards(data: building, lm: lm)
                         }
@@ -72,7 +71,7 @@ struct BuildingListView: View {
             .toolbarBackground(Color.customDarkBlue, for: .navigationBar)
             .toolbarBackground(.visible)
             .sheet(isPresented: $isFilterSheetPresented) {
-                FilterSheet(listData: listData, selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy, selectedFeatures: $selectedFeatures)
+                FilterSheet(selectedCategory: $selectedCategory, selectedSortBy: $selectedSortBy, selectedFeatures: $selectedFeatures)
             }
             
         }

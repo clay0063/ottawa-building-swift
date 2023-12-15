@@ -12,12 +12,16 @@ class BuildingViewModel: ObservableObject {
     
     @Published var buildingDataEN = [Building]()
     @Published var buildingDataFR = [Building]()
+    @Published var displayList = [Building]()
     @Published var savedList = [Building]()
     private let submissionRef = Firestore.firestore().collection("Buildings")
+    
+    @Published var currentLanguage = "en"
     
     
     init() {
         loadData()
+        updateCurrentList()
     }
     
     func loadData() {
@@ -76,6 +80,21 @@ class BuildingViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    private func updateCurrentList() {
+        switch currentLanguage {
+        case "en":
+            displayList = buildingDataEN
+        case "fr":
+            displayList = buildingDataFR
+        default:
+            break
+        }
+    }
+    
+    func toggleLanguage() {
+        updateCurrentList()
     }
     
 }

@@ -9,7 +9,6 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    var listData: [Building]
     @EnvironmentObject var vm: BuildingViewModel
     var lm: LocationManager
     @State private var position: MapCameraPosition = .automatic
@@ -26,14 +25,14 @@ struct MapView: View {
     
     private var selectedPlace: Building? {
         if let selectedItem {
-            return listData.first(where: { $0.id.hashValue == selectedItem.hashValue })
+            return vm.displayList.first(where: { $0.id.hashValue == selectedItem.hashValue })
         }
         return nil
     }
     
     var body: some View {
         var filteredData: [Building] {
-            return filtering.filterData(buildings: listData, selectedFeatures: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy, lm: lm)
+            return filtering.filterData(buildings: vm.displayList, selectedFeatures: selectedFeatures, selectedCategory: selectedCategory, selectedSortBy: selectedSortBy, lm: lm)
         }
         
         Map(position: $position, selection: $selectedItem) {
@@ -119,7 +118,7 @@ struct MapView: View {
         }
         .sheet(isPresented: $isSheetPresented, onDismiss: {isSheetPresented = false}, content: {
             if let selectedPlace {
-                BuildingDetailView(data: selectedPlace, dataList: listData)
+                BuildingDetailView(data: selectedPlace)
                 //                    .presentationBackground(.thinMaterial)
                     .presentationDetents([.large])
                     .presentationCornerRadius(25)
@@ -127,7 +126,7 @@ struct MapView: View {
             
         })
         .sheet(isPresented: $isFilterSheetPresented) {
-            FilterSheetMap(listData: listData, selectedCategory: $selectedCategory, selectedFeatures: $selectedFeatures)
+            FilterSheetMap(selectedCategory: $selectedCategory, selectedFeatures: $selectedFeatures)
         }
         .mapControls(){
             MapCompass()

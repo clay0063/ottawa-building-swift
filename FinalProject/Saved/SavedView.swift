@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SavedView: View {
-    var dataList: [Building]
     @EnvironmentObject var vm: BuildingViewModel
     var lm: LocationManager
     
@@ -18,7 +17,7 @@ struct SavedView: View {
                 if vm.savedList.isEmpty {
                     SavedIsEmptyView()
                 } else {
-                    SavedListView(dataList: dataList, lm: lm)
+                    SavedListView(lm: lm)
                         
                 }
                 
@@ -65,7 +64,6 @@ struct SavedIsEmptyView: View {
 }
 
 struct SavedListView: View {
-    var dataList: [Building]
     @EnvironmentObject var vm: BuildingViewModel
     var lm: LocationManager
     @State private var searchName = ""
@@ -76,7 +74,7 @@ struct SavedListView: View {
                 searchName.isEmpty || $0.name.lowercased().contains(searchName.lowercased())
             }, id: \.id) { building in
                 NavigationLink(
-                    destination: BuildingDetailView(data: building, dataList: dataList)
+                    destination: BuildingDetailView(data: building)
                 ) {
                     BuildingCards(data: building, lm: lm)
                 }

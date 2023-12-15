@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct FilterSheet: View {
-    
-    var listData: [Building]
+    @EnvironmentObject var vm: BuildingViewModel
     @Binding var selectedCategory: String
     @Binding var selectedSortBy: String
     @Binding var selectedFeatures: Set<String>
     
     
     var sortCategories: [String] {
-        let categories = Set(listData.map {$0.category})
+        let categories = Set(vm.displayList.map {$0.category})
         return ["All Categories"] + Array(categories).sorted()
     }
     let sortOptions = ["A-Z", "Z-A", "Distance"]

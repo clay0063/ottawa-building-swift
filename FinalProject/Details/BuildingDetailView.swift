@@ -9,8 +9,8 @@ import SwiftUI
 
 
 struct BuildingDetailView: View {
+    @EnvironmentObject var vm: BuildingViewModel
     let data: Building
-    let dataList: [Building]
     
     var body: some View {
         
