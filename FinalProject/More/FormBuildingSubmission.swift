@@ -28,7 +28,7 @@ struct FormBuildingSubmission: View {
     @State var submission: Submission = Submission()
     
     
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     let categoriesList = [
         "Academic Institutions",

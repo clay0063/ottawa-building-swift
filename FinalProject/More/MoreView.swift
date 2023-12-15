@@ -31,7 +31,10 @@ struct MoreView: View {
                     })
                     .padding(.vertical)
                     
-                    Text("About portfolio")
+                    
+                    NavigationLink(destination: About(), label: {
+                        Text("About the Dev")
+                    })
                     .padding(.vertical)
                     
                 }

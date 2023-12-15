@@ -89,7 +89,3 @@ struct SafariViewWrap: UIViewControllerRepresentable {
         // no updates
     }
 }
-
-#Preview {
-    ContentView()
-}
