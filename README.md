@@ -1,6 +1,5 @@
-# Teagan Clayton (clay0063)
+# Ottawa Public Building Resource Swift App
 
-Completed:
 ### Home Screen:
 - Card view of all buildings
   - Image
@@ -48,5 +47,14 @@ Completed:
 - Website (open in in-app browser)
 - Amenities with icons
 
-Tested on iPhone 12 in Thursday lab with Steve.
-Sent invites to Firebase.
+### Screenshots
+<div>
+  <img src="https://i.ibb.co/frGxQtH/swift-Ottawa1.png" width="auto" height="400" />&nbsp;
+  <img src="https://i.ibb.co/mq2WmyT/swift-Ottawa2.png" width="auto" height="400" />&nbsp;
+  <img src="https://i.ibb.co/sRtCQs7/swift-Ottawa5.png" width="auto" height="400" />&nbsp;
+  <img src="https://i.ibb.co/0JWQPDJ/swift-Ottawa6.png" width="auto" height="400" />&nbsp;
+  <img src="https://i.ibb.co/YTP9xkW/swift-Ottawa7.png" width="auto" height="400" />&nbsp;
+  <img src="https://i.ibb.co/brQ0vqF/swift-Ottawa8.png" width="auto" height="400" />&nbsp;
+  <img src="https://i.ibb.co/kKqWr2g/swift-Ottawa9.png" width="auto" height="400" />&nbsp;
+  <img src="https://i.ibb.co/s6LdvYx/swift-Ottawa10.png" width="auto" height="400" />&nbsp;
+</div>
